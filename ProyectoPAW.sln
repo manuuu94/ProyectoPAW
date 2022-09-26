@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{E991EC58-C7D3-4948-B16F-693CCB34A2F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{631F880B-0013-4185-8BFB-0DBEF9522ED9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEnd", "BackEnd\BackEnd.csproj", "{BCBE02D0-32AA-4278-BB13-64F65D350637}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E991EC58-C7D3-4948-B16F-693CCB34A2F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E991EC58-C7D3-4948-B16F-693CCB34A2F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E991EC58-C7D3-4948-B16F-693CCB34A2F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E991EC58-C7D3-4948-B16F-693CCB34A2F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{631F880B-0013-4185-8BFB-0DBEF9522ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{631F880B-0013-4185-8BFB-0DBEF9522ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{631F880B-0013-4185-8BFB-0DBEF9522ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{631F880B-0013-4185-8BFB-0DBEF9522ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCBE02D0-32AA-4278-BB13-64F65D350637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCBE02D0-32AA-4278-BB13-64F65D350637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCBE02D0-32AA-4278-BB13-64F65D350637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCBE02D0-32AA-4278-BB13-64F65D350637}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F67033A8-951B-46AA-90BE-A3FEB4DB5A6E}
+	EndGlobalSection
+EndGlobal
