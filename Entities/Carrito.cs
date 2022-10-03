@@ -12,6 +12,6 @@ namespace Entities
         public decimal Total { get; set; }
         public int IdProducto { get; set; }
 
-        public virtual InventarioServicio IdProductoNavigation { get; set; } = null!;
+        public virtual InventarioServicio? IdProductoNavigation { get; set; } /*= null!;*/
     }
 }

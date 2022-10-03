@@ -39,11 +39,9 @@ namespace DAL.Implementations
                     //save changes
                     return unidad.Complete();
                 }//aqui sucede el dispose por el using a UnidadDeTrabajo con el context (conexion)
-
             }
             catch (Exception)
             {
-
                 return false;
             }
         }

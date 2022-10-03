@@ -17,7 +17,7 @@ namespace Entities
         public string? UrlImage { get; set; }
         public int IdServicio { get; set; }
 
-        public virtual Servicio IdServicioNavigation { get; set; } = null!;
+        public virtual Servicio? IdServicioNavigation { get; set; } /*= null!;*/
         public virtual ICollection<Carrito> Carritos { get; set; }
     }
 }
