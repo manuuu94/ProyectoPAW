@@ -27,36 +27,76 @@ namespace DAL.Implementations
 
         public bool Add(Carrito entity)
         {
-            try
+            using (var conexion = new PROYECTO_PAWContext())
             {
-                using (context = new PROYECTO_PAWContext())
+                try
                 {
-                    var datos = (from x in context.InventarioServicios
+                    var datos = (from x in conexion.InventarioServicios
                                  where x.IdProducto == entity.IdProducto
                                  select x).FirstOrDefault();
                     if (datos.CantidadDisponible >= entity.Cantidad && datos != null &&
                         datos.CantidadDisponible != 0 && entity.Cantidad > 0)
                     {
                         datos.CantidadDisponible = datos.CantidadDisponible - entity.Cantidad;
-                        context.SaveChanges();
-                        context.Dispose();
-                        using (UnidadDeTrabajo<Carrito> unidad = new UnidadDeTrabajo<Carrito>(context))
-                        {
-                            entity.Total = entity.Cantidad * entity.Precio;
-                            return unidad.Complete();
-                        }
+
+                        Carrito carro = new Carrito();
+                        carro.Descripcion = datos.Descripcion;
+                        carro.Precio = datos.Precio;
+                        carro.Cantidad = entity.Cantidad;
+                        carro.Total = carro.Precio * carro.Cantidad;
+                        carro.IdProducto = datos.IdProducto;
+                        conexion.Carritos.Add(carro);
+                        conexion.SaveChanges();
+
+                        return true;
                     }
                     else
                     {
                         return false;
                     }
                 }
-            }
-            catch (Exception)
-            {
-                return false;
+                catch (Exception ex)
+                {
+                    conexion.Dispose();
+                    throw ex;
+                }
             }
         }
+        //cycle error for some reason but it works 
+        //{
+        //    try
+        //    {
+        //        using (UnidadDeTrabajo<Carrito> unidad = new UnidadDeTrabajo<Carrito>(context))
+        //        //using (context = new PROYECTO_PAWContext())
+        //        {
+        //            var datos = (from x in context.InventarioServicios
+        //                         where x.IdProducto == entity.IdProducto
+        //                         select x).FirstOrDefault();
+        //            if (datos.CantidadDisponible >= entity.Cantidad && datos != null &&
+        //                datos.CantidadDisponible != 0 && entity.Cantidad > 0)
+        //            {
+        //                datos.CantidadDisponible = datos.CantidadDisponible - entity.Cantidad;
+        //                //context.SaveChanges();
+        //                //context.Dispose();
+
+        //                //using (UnidadDeTrabajo<Carrito> unidad = new UnidadDeTrabajo<Carrito>(context))
+        //                //{
+        //                    entity.Total = entity.Cantidad * entity.Precio;
+        //                    unidad.genericDAL.Add(entity);
+        //                    return unidad.Complete();
+        //                //}
+        //            }
+        //            else
+        //            {
+        //                return false;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return false;
+        //    }
+        //}
 
         public void AddRange(IEnumerable<Carrito> entities)
         {
@@ -109,8 +149,59 @@ namespace DAL.Implementations
 
         public bool Remove(Carrito entity)
         {
-            throw new NotImplementedException();
+            using (var conexion = new PROYECTO_PAWContext())
+            {
+                try
+                {
+                    var datos = (from x in conexion.Carritos
+                                 where x.IdProd == entity.IdProd
+                                 select x).FirstOrDefault();
+                    if (datos != null)
+                    {
+                        var datosx = (from x in conexion.InventarioServicios
+                                      where x.IdProducto == datos.IdProducto
+                                      select x).FirstOrDefault();
+                        datosx.CantidadDisponible = datosx.CantidadDisponible + datos.Cantidad;
+                        conexion.Carritos.Remove(datos);
+                        conexion.SaveChanges();
+                        //conexion.Dispose();
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    conexion.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    conexion.Dispose();
+                    throw ex;
+                }
+            }
         }
+        //{
+        //    bool result = false;
+        //    try
+        //    {
+        //        using (UnidadDeTrabajo<Carrito> unidad = new UnidadDeTrabajo<Carrito>(context))
+        //        {
+        //            unidad.genericDAL.Remove(entity);
+        //            result = unidad.Complete();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        result = false;
+        //    }
+        //    return result;
+        //}
+
+
+
+
+
 
         public void RemoveRange(IEnumerable<Carrito> entities)
         {

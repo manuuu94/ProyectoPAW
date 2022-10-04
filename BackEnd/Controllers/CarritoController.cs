@@ -68,10 +68,23 @@ namespace BackEnd.Controllers
         {
         }
 
+
+        #region Eliminar
         // DELETE api/<CarritoController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public JsonResult Delete(int id)
         {
+            try
+            {
+                Carrito producto = new Carrito { IdProd = id };
+                carritoDAL.Remove(producto);
+                return new JsonResult(producto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
+        #endregion
     }
 }
