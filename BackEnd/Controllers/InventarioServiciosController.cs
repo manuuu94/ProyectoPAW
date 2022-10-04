@@ -91,3 +91,18 @@ namespace BackEnd.Controllers
         #endregion
     }
 }
+
+
+// DB - DONE
+//API:
+//CRUD Inventario - DONE
+//CRUD Empleados - DONE
+//AñadeCarrito con funcionalidad al inventario - DONE
+//VaciarCarrito 1x1 o Todo con funcionalidad al inventario - DONE
+//SP AñadeEmpleado - DONE
+//SP ValidaUsuario - InProgress
+
+//RegistraCompra a partir del Carrito (Total), datos del cliente y met.pago- NOTYET
+//Añade a ClientesAtendidos a partir del RegistroCompra (datos del cliente) - NOTYET
+//GETAll RegistrosInventario - NOTYET
+//GETAll ClientesAtendidos - NOTYET

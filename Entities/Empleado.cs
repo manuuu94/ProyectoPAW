@@ -40,4 +40,7 @@ namespace Entities
         public string Correo { get; set; } = null!;
         public int IdRol { get; set; }
     }
+
 }
+
+

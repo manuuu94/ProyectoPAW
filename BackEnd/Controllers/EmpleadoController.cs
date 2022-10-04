@@ -69,10 +69,24 @@ namespace BackEnd.Controllers
         {
         }
 
+        #region Eliminar
         // DELETE api/<EmpleadoController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public JsonResult Delete(int id)
         {
+            try
+            {
+                Empleado empleado = new Empleado { IdEmpleado = id };
+                empleadoDAL.Remove(empleado);
+                return new JsonResult(empleado);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
+    #endregion
+
+
     }
 }

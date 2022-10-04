@@ -123,6 +123,51 @@ namespace DAL.Implementations
             }
         }
 
+        ////public bool ValidarUsuario(Usuario usuario)
+        //{
+        //    using (var conexion = new PROYECTO_PAWContext())
+        //    {
+        //        try
+        //        {
+        //            Usuario result;
+        //            string sql = "[dbo].[validarUsuario] @PUSERNAME, @PPASSWORD";
+        //            var param = new SqlParameter[]
+        //            {
+        //                new SqlParameter()
+        //                {
+        //                    ParameterName = "@PUSERNAME",
+        //                    SqlDbType = System.Data.SqlDbType.VarChar,
+        //                    Size = 20,
+        //                    Direction = System.Data.ParameterDirection.Input,
+        //                    Value = usuario.Username
+        //                },
+        //                new SqlParameter()
+        //                {
+        //                    ParameterName = "@PPASSWORD",
+        //                    SqlDbType = System.Data.SqlDbType.VarChar,
+        //                    Size = 20,
+        //                    Direction = System.Data.ParameterDirection.Input,
+        //                    Value = usuario.Username
+        //                }
+        //            };
+        //            result = context.usuario.FromSqlRaw(sql, param).FirstAsync().Result;
+        //            if(result != null)
+        //            {
+        //                return true;
+        //            }
+        //            else
+        //            {
+        //                return false;
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            conexion.Dispose();
+        //            throw ex;
+        //        }
+        //    }
+        //}
+
 
         //public bool Add(Empleado entity)
         //{
@@ -222,7 +267,20 @@ namespace DAL.Implementations
 
         public bool Remove(Empleado entity)
         {
-            throw new NotImplementedException();
+            bool result = false;
+            try
+            {
+                using (UnidadDeTrabajo<Empleado> unidad = new UnidadDeTrabajo<Empleado>(context))
+                {
+                    unidad.genericDAL.Remove(entity);
+                    result = unidad.Complete();
+                }
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+            return result;
         }
 
         public void RemoveRange(IEnumerable<Empleado> entities)
@@ -239,7 +297,6 @@ namespace DAL.Implementations
         {
             throw new NotImplementedException();
         }
-
 
     }
 }

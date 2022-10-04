@@ -20,8 +20,8 @@ namespace Entities
         public virtual DbSet<ClientesAtendido> ClientesAtendidos { get; set; } = null!;
         public virtual DbSet<Empleado> Empleados { get; set; } = null!;
 
-        public virtual DbSet<EmpleadoNuevo> EmpleadosNuevos { get; set; } = null!;
-
+        //public virtual DbSet<EmpleadoNuevo> EmpleadosNuevos { get; set; } = null!;
+        public virtual DbSet<Usuario> usuario { get; set; } = null!;
         public virtual DbSet<InventarioServicio> InventarioServicios { get; set; } = null!;
         public virtual DbSet<MetodosPago> MetodosPagos { get; set; } = null!;
         public virtual DbSet<RegistroCompra> RegistroCompras { get; set; } = null!;
