@@ -50,7 +50,7 @@ namespace BackEnd.Controllers
 
         // POST api/<EmpleadoController>
         [HttpPost]
-        public Empleado Post([FromBody] Empleado empleado)
+        public EmpleadoNuevo Post([FromBody] EmpleadoNuevo empleado)
         {
             try
             {

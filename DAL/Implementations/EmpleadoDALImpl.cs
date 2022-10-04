@@ -31,13 +31,12 @@ namespace DAL.Implementations
             throw new NotImplementedException();
         }
 
-        public bool AñadeEmpleado(Empleado empleado)
+        public bool AñadeEmpleado(EmpleadoNuevo empleado)
         {
             try
             {
-                Empleado result;
                 string sql = "[dbo].[añadeEmpleado] @PNOMBRE,@PAPELLIDO1," +
-                    "@PAPELLIDO2, @PUSERNAME,@PPASSWORD," +
+                    "@PAPELLIDO2,@PUSERNAME,@PPASSWORD," +
                     "@PFECHAINGRESO,@PCORREO,@PIDROL";
                 var param = new SqlParameter[]
                 {
@@ -77,15 +76,24 @@ namespace DAL.Implementations
                     Direction = System.Data.ParameterDirection.Input,
                     Value = empleado.Username
                     },
-                    //new SqlParameter()
-                    //{
-                    //ParameterName = "@PPASSWORD",
-                    ////tipo de variable en el sql
-                    //SqlDbType = System.Data.SqlDbType.VarChar,
-                    //Size = 20,
-                    //Direction = System.Data.ParameterDirection.Input,
-                    //Value = empleado.Password
-                    //},
+                    new SqlParameter()
+                    {
+                    ParameterName = "@PPASSWORD",
+                    //tipo de variable en el sql
+                    SqlDbType = System.Data.SqlDbType.VarChar,
+                    Size = 20,
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = empleado.Password
+                    },
+                    new SqlParameter()
+                    {
+                    ParameterName = "@PFECHAINGRESO",
+                    //tipo de variable en el sql
+                    SqlDbType = System.Data.SqlDbType.Date,
+                    Size = 20,
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = DateTime.Now
+                    },
                     new SqlParameter()
                     {
                     ParameterName = "@PCORREO",
@@ -97,7 +105,7 @@ namespace DAL.Implementations
                     },
                     new SqlParameter()
                     {
-                    ParameterName = "@IDROL",
+                    ParameterName = "@PIDROL",
                     //tipo de variable en el sql
                     SqlDbType = System.Data.SqlDbType.Int,
                     Size = 20,
@@ -106,8 +114,7 @@ namespace DAL.Implementations
                     }
                 };
 
-                result = context.Empleados.FromSqlRaw(sql, param, param, param,
-                    param, param, param, param).FirstAsync().Result;
+                context.Database.ExecuteSqlRaw(sql, param);
                 return true;
             }
             catch (Exception)

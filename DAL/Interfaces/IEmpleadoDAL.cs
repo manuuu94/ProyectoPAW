@@ -9,7 +9,7 @@ namespace DAL.Interfaces
 {
     public interface IEmpleadoDAL : IDALGenerico<Empleado>
     {
-        bool AñadeEmpleado(Empleado empleado);
+        bool AñadeEmpleado(EmpleadoNuevo empleado);
         List<Empleado> Get();
     }
 }

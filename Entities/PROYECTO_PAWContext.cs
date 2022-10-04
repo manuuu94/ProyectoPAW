@@ -19,6 +19,9 @@ namespace Entities
         public virtual DbSet<Carrito> Carritos { get; set; } = null!;
         public virtual DbSet<ClientesAtendido> ClientesAtendidos { get; set; } = null!;
         public virtual DbSet<Empleado> Empleados { get; set; } = null!;
+
+        public virtual DbSet<EmpleadoNuevo> EmpleadosNuevos { get; set; } = null!;
+
         public virtual DbSet<InventarioServicio> InventarioServicios { get; set; } = null!;
         public virtual DbSet<MetodosPago> MetodosPagos { get; set; } = null!;
         public virtual DbSet<RegistroCompra> RegistroCompras { get; set; } = null!;
@@ -157,10 +160,6 @@ namespace Entities
                     .IsUnicode(false)
                     .HasColumnName("USERNAME");
 
-    // entity.Property(e => e.Password)
-    //.HasMaxLength(100)
-    //.IsUnicode(false)
-    //.HasColumnName("PASSWORD");
 
                 entity.HasOne(d => d.IdRolNavigation)
                     .WithMany(p => p.Empleados)
