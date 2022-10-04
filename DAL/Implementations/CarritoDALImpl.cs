@@ -199,7 +199,39 @@ namespace DAL.Implementations
         //}
 
 
-
+        public bool RemoveAll()
+        {
+            using (var conexion = new PROYECTO_PAWContext())
+            {
+                try
+                {
+                    var datos = (from x in conexion.Carritos
+                                 select x).ToList();
+                    if (datos.Count != 0)
+                    {
+                        foreach (var dato in datos)
+                        {
+                            var datosx = (from x in conexion.InventarioServicios
+                                          where x.IdProducto == dato.IdProducto
+                                          select x).FirstOrDefault();
+                            datosx.CantidadDisponible = datosx.CantidadDisponible + dato.Cantidad;
+                            conexion.Carritos.Remove(dato);
+                        }
+                        conexion.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    conexion.Dispose();
+                    throw ex;
+                }
+            }
+        }
 
 
 

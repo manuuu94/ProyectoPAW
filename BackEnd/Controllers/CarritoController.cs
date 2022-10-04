@@ -86,5 +86,22 @@ namespace BackEnd.Controllers
             }
         }
         #endregion
+
+        #region EliminarTodos
+        // DELETE api/<CarritoController>
+        [HttpDelete]
+        public bool DeleteAll(int id)
+        {
+            try
+            {
+                carritoDAL.RemoveAll();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        #endregion
     }
 }
