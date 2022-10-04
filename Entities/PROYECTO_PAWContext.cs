@@ -157,6 +157,11 @@ namespace Entities
                     .IsUnicode(false)
                     .HasColumnName("USERNAME");
 
+    // entity.Property(e => e.Password)
+    //.HasMaxLength(100)
+    //.IsUnicode(false)
+    //.HasColumnName("PASSWORD");
+
                 entity.HasOne(d => d.IdRolNavigation)
                     .WithMany(p => p.Empleados)
                     .HasForeignKey(d => d.IdRol)

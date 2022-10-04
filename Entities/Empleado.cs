@@ -15,12 +15,13 @@ namespace Entities
         public string Apellido1 { get; set; } = null!;
         public string Apellido2 { get; set; } = null!;
         public string Username { get; set; } = null!;
+        //public string Password { get; set; } = null!;
         public byte[] Passhash { get; set; } = null!;
         public DateTime FechaIngreso { get; set; }
         public string Correo { get; set; } = null!;
         public int IdRol { get; set; }
 
-        public virtual Servicio IdRolNavigation { get; set; } = null!;
+        public virtual Servicio? IdRolNavigation { get; set; } /*= null!;*/
         public virtual ICollection<RegistroCompra> RegistroCompras { get; set; }
     }
 }

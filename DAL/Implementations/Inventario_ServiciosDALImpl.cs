@@ -72,7 +72,6 @@ namespace DAL.Implementations
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
