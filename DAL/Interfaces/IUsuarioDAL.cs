@@ -11,5 +11,7 @@ namespace DAL.Interfaces
     {
         List<Usuario> ValidarUsuario(Usuario usuario);
 
+        bool CambiaContraseña(Usuario usuario);
+
     }
 }

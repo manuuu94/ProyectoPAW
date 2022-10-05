@@ -120,6 +120,51 @@ namespace DAL.Implementations
                 }
             }
         }
+
+
+        public bool CambiaContraseña(Usuario usuario)
+        {
+            try
+            {
+                string sql = "[dbo].[cambiarContraseña] @PUSERNAME,@PPASSWORD";
+                var param = new SqlParameter[]
+                {
+                    new SqlParameter()
+                    {
+                    ParameterName = "@PUSERNAME",
+                    //tipo de variable en el sql
+                    SqlDbType = System.Data.SqlDbType.VarChar,
+                    Size = 20,
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = usuario.Username
+                    },
+                    new SqlParameter()
+                    {
+                    ParameterName = "@PPASSWORD",
+                    //tipo de variable en el sql
+                    SqlDbType = System.Data.SqlDbType.VarChar,
+                    Size = 20,
+                    Direction = System.Data.ParameterDirection.Input,
+                    Value = usuario.Password
+                    }
+                };
+
+                context.Database.ExecuteSqlRaw(sql, param);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
+
+
+
+
+
+
     }
 }
 

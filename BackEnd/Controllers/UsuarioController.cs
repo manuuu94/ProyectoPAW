@@ -28,6 +28,20 @@ namespace BackEnd.Controllers
         }
         #endregion
 
+        [Route("cambiaContraseña")]
+        [HttpPost]
+        public Usuario cambiaContraseña([FromBody] Usuario usuario)
+        {
+            try
+            {
+                usuarioDAL.CambiaContraseña(usuario);
+                return usuario;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
 
     }

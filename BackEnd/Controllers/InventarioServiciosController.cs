@@ -96,11 +96,12 @@ namespace BackEnd.Controllers
 // DB - DONE
 //API:
 //CRUD Inventario - DONE
-//CRUD Empleados - DONE
+//CRUD Empleados - DONE (falta EDIT)
 //AñadeCarrito con funcionalidad al inventario - DONE
 //VaciarCarrito 1x1 o Todo con funcionalidad al inventario - DONE
 //SP AñadeEmpleado - DONE
-//SP ValidaUsuario - InProgress
+//SP ValidaUsuario - DONE
+//SP CambiarContraseña - NOTYET
 
 //RegistraCompra a partir del Carrito (Total), datos del cliente y met.pago- NOTYET
 //Añade a ClientesAtendidos a partir del RegistroCompra (datos del cliente) - NOTYET
