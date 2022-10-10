@@ -75,11 +75,13 @@ namespace DAL.Implementations
                                     registro.IdEmpleado = registroCompra.IdEmpleado;
                                     registro.NombreEmpleado = registroCompra.NombreEmpleado;
                                     conexion.RegistroCompras.Add(registro);
+                                    conexion.SaveChanges();
+
                                     ClientesAtendido clientes_atendidos = new ClientesAtendido();
-                                    clientes_atendidos.CedulaCliente = registroCompra.CedulaCliente;
-                                    clientes_atendidos.NombreCliente = registroCompra.NombreCliente;
-                                    clientes_atendidos.Correo = registroCompra.Correo;
-                                    clientes_atendidos.Telefono = registroCompra.Telefono;
+                                    clientes_atendidos.CedulaCliente = registro.CedulaCliente;
+                                    clientes_atendidos.NombreCliente = registro.NombreCliente;
+                                    clientes_atendidos.Correo = registro.Correo;
+                                    clientes_atendidos.Telefono = registro.Telefono;
                                     clientes_atendidos.Fecha = DateTime.Now;
                                     clientes_atendidos.IdCompra = registro.IdCompra;
                                     conexion.ClientesAtendidos.Add(clientes_atendidos);
@@ -99,6 +101,7 @@ namespace DAL.Implementations
                                     {
                                         TOTAL_COMPRA = TOTAL_COMPRA + dato.Total;
                                     }
+
                                     RegistroCompra registro = new RegistroCompra();
                                     registro.CedulaCliente = registroCompra.CedulaCliente;
                                     registro.NombreCliente = registroCompra.NombreCliente;
@@ -110,11 +113,14 @@ namespace DAL.Implementations
                                     registro.IdEmpleado = registroCompra.IdEmpleado;
                                     registro.NombreEmpleado = registroCompra.NombreEmpleado;
                                     conexion.RegistroCompras.Add(registro);
+                                    conexion.SaveChanges();
+
+
                                     ClientesAtendido clientes_atendidos = new ClientesAtendido();
-                                    clientes_atendidos.CedulaCliente = registroCompra.CedulaCliente;
-                                    clientes_atendidos.NombreCliente = registroCompra.NombreCliente;
-                                    clientes_atendidos.Correo = registroCompra.Correo;
-                                    clientes_atendidos.Telefono = registroCompra.Telefono;
+                                    clientes_atendidos.CedulaCliente = registro.CedulaCliente;
+                                    clientes_atendidos.NombreCliente = registro.NombreCliente;
+                                    clientes_atendidos.Correo = registro.Correo;
+                                    clientes_atendidos.Telefono = registro.Telefono;
                                     clientes_atendidos.Fecha = DateTime.Now;
                                     clientes_atendidos.IdCompra = registro.IdCompra;
                                     conexion.ClientesAtendidos.Add(clientes_atendidos);

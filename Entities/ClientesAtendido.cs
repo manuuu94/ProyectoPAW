@@ -11,8 +11,8 @@ namespace Entities
         public string? Correo { get; set; }
         public string? Telefono { get; set; }
         public DateTime? Fecha { get; set; }
-        public int IdCompra { get; set; }
+        public int? IdCompra { get; set; }
 
-        public virtual RegistroCompra IdCompraNavigation { get; set; } = null!;
+        public virtual RegistroCompra? IdCompraNavigation { get; set; } /*= null!;*/
     }
 }
