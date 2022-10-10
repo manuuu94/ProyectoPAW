@@ -21,7 +21,7 @@ namespace Entities
         public int IdEmpleado { get; set; }
         public string? NombreEmpleado { get; set; }
 
-        public virtual Empleado IdEmpleadoNavigation { get; set; } = null!;
+        public virtual Empleado? IdEmpleadoNavigation { get; set; } // = null!;
         public virtual MetodosPago? IdMetodoNavigation { get; set; }
         public virtual ICollection<ClientesAtendido> ClientesAtendidos { get; set; }
     }
