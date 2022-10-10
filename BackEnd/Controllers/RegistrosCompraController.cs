@@ -35,6 +35,15 @@ namespace BackEnd.Controllers
             }
         }
 
+        [HttpGet]
+        public JsonResult Get()
+        {
+            IEnumerable<RegistroCompra> registrocompras;
+            registrocompras = resgistrosCompraDAL.GetAll();
+
+            return new JsonResult(registrocompras);
+        }
+
 
 
     }

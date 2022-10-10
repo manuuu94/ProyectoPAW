@@ -166,12 +166,12 @@ namespace DAL.Implementations
         {
             try
             {
-                IEnumerable<RegistroCompra> registrosinv;
+                IEnumerable<RegistroCompra> registroscomp;
                 using (UnidadDeTrabajo<RegistroCompra> unidad = new UnidadDeTrabajo<RegistroCompra>(context))
                 {
-                    registrosinv = unidad.genericDAL.GetAll();
+                    registroscomp = unidad.genericDAL.GetAll();
                 }
-                return registrosinv;
+                return registroscomp;
             }
             catch (Exception)
             {
