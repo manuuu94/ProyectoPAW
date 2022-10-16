@@ -24,5 +24,41 @@ namespace FrontEnd.Controllers
                 throw;
             }
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(InventarioServiciosViewModel inventario)
+        {
+            try
+            {
+
+
+
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.PostResponse("api/InventarioServicios", inventario);
+                response.EnsureSuccessStatusCode();
+                InventarioServiciosViewModel InventarioServiciosViewModel = response.Content.ReadAsAsync<InventarioServiciosViewModel>().Result;
+                return RedirectToAction("Index");
+            }
+            catch (HttpRequestException
+          )
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            catch (Exception
+            )
+            {
+
+                throw;
+            }
+        }
+
     }
 }
