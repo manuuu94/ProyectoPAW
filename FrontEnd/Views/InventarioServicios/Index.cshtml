@@ -4,62 +4,94 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>VER INVENTARIO</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<head>
+    <!--
+    <script src="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></script>
+    <script src="//cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css"></script>
+        -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<table id="tbInventario" class="table table-bordered table-hover">
+
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdProducto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CantidadDisponible)
-            </th>
-@*            <th>
-                @Html.DisplayNameFor(model => model.UrlImage)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.IdServicio)
-            </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.IdProducto)</th>
+            <th>  @Html.DisplayNameFor(model => model.Descripcion)</th>
+            <th> @Html.DisplayNameFor(model => model.Precio)</th>
+            <th>@Html.DisplayNameFor(model => model.CantidadDisponible)</th>
+            @*<th>url</th>*@
+            <th>  @Html.DisplayNameFor(model => model.IdServicio)</th>
         </tr>
     </thead>
+
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdProducto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                ₡ @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CantidadDisponible)
-            </td>
-@*            <td>
-                @Html.DisplayFor(modelItem => item.UrlImage)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.IdServicio)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> <div class="form-group" style="text-align: center; readonly">          @Html.DisplayFor(modelItem => item.IdProducto) </div></td>
+                <td> <div class="form-group" style="text-align: center; readonly">      @Html.DisplayFor(modelItem => item.Descripcion) </div></td>
+                <td> <div class="form-group" style="text-align: center; readonly"> ₡ @Html.DisplayFor(modelItem => item.Precio)</div></td>
+                <td> <div class="form-group" style="text-align: center; readonly">    @Html.DisplayFor(modelItem => item.CantidadDisponible)</div></td>
+                @*<td> <div class="form-group" style="text-align: center; readonly">@item.URL_IMAGE </div></td>*@
+                <td> <div class="form-group" style="text-align: center; readonly">    @Html.DisplayFor(modelItem => item.IdServicio) </div></td>
+
+            </tr>
+        }
+
     </tbody>
 </table>
+<br />
+<br />
+<br />
+
+@using (Html.BeginForm("AñadirCarrito", "Inventario", FormMethod.Post))
+{
+    @Html.Hidden("CarritoMsj", (string)ViewBag.Mensaje);
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cantidad</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>  @Html.DisplayNameFor(model => model.IdProducto) </td>
+                <td>@Html.DisplayNameFor(model => model.IdProducto) )</td>
+
+                <td>
+                    <div class="form-group" style="text-align: center;">
+                        <input style="background-color:black;color:white" type="submit" value="Añadir al Carrito" class="text-center btn2 float-center login_btn">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+@section Scripts
+{
+    <script src="~/Funciones/Inventario.js"></script>
+    <script src="~/Funciones/tablas.js"></script>
+    <script src="~/Funciones/Prueba.js"></script>
+    <script src="~/Funciones/AñadirCarrito.js"></script>
+    <script src="//code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="//cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+}
