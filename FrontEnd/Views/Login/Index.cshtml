@@ -1,0 +1,161 @@
+﻿@model FrontEnd.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iniciar sesion</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<style>
+
+html, body {
+    background-image: url('https://images.unsplash.com/photo-1632685062337-095b722134ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+}
+
+.container {
+    height: 100%;
+    align-content: center;
+}
+
+.card {
+    height: 300px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 300px;
+    background-color: rgba(0,0,0,0.5) !important;
+}
+
+.social_icon span {
+    font-size: 60px;
+    margin-left: 10px;
+    color: #FFC312;
+}
+
+    .social_icon span:hover {
+        color: white;
+        cursor: pointer;
+    }
+
+.card-header h3 {
+    color: white;
+}
+
+.social_icon {
+    position: absolute;
+    right: 20px;
+    top: -45px;
+}
+
+.input-group-prepend span {
+    width: 50px;
+    background-color: #FFC312;
+    color: black;
+    border: 0 !important;
+}
+
+input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+.remember {
+    color: white;
+}
+
+    .remember input {
+        width: 20px;
+        height: 20px;
+        margin-left: 15px;
+        margin-right: 5px;
+    }
+
+.login_btn {
+    color: black;
+    background-color: #FFC312;
+    width: 100px;
+}
+
+    .login_btn:hover {
+        color: black;
+        background-color: white;
+    }
+
+.links {
+    color: white;
+}
+
+    .links a {
+        margin-left: 4px;
+    }
+</style>
+<body>
+    
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+             <br> <br/>
+             <br> <br/>
+             <br> <br/>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Inicio de sesion</h3>
+                    <div class="d-flex justify-content-end social_icon">
+                       
+                        <a href="https://www.facebook.com/"><span><i class="fab fa-facebook-square"></i></span></a>
+                        <a href="https://twitter.com/home"><span><i class="fab fa-twitter-square"></i></span></a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+                    {
+                        <br>
+
+                        @Html.Hidden("IdMsj", (string)ViewBag.Mensaje);
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                          <input type="text" id="lname" name="lname"><br><br>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                           <input type="text" id="lname" name="lname"><br><br>
+                        </div>
+
+                        <div class="form-group" style="text-align: center;">
+                            <input type="submit" value="Iniciar sesion" class=" text-center btn float-center login_btn">
+                        </div>
+                    }
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center">
+                        <a @Html.ActionLink("Olvidé contraseña", "ResetPass", "Login", new { @class = "elements" }) </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+@section Scripts
+{
+    <script src="~/Funciones/Login.js"></script>
+    <script src="~/Funciones/Generales.js"></script>
+}
+
