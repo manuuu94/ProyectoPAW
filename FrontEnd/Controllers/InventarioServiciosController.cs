@@ -114,6 +114,17 @@ namespace FrontEnd.Controllers
             }
         }
 
+        public ActionResult Details(int id)
+        {
+
+
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.GetResponse("api/inventarioServicios/" + id.ToString());
+            response.EnsureSuccessStatusCode();
+            Models.InventarioServiciosViewModel InventarioServiciosViewModel = response.Content.ReadAsAsync<Models.InventarioServiciosViewModel>().Result;
+            //ViewBag.Title = "All Products";
+            return View(InventarioServiciosViewModel);
+        }
 
 
     }
