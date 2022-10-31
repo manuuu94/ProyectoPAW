@@ -60,5 +60,63 @@ namespace FrontEnd.Controllers
             }
         }
 
+        public ActionResult Edit(int id)
+        {
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.GetResponse("api/InventarioServicios/" + id.ToString());
+            response.EnsureSuccessStatusCode();
+            InventarioServiciosViewModel InventarioServiciosViewModel = response.Content.ReadAsAsync<InventarioServiciosViewModel>().Result;
+     
+            return View(InventarioServiciosViewModel);
+        }
+
+        // POST: InventarioServiciosController/Edit/5
+        [HttpPost]
+        public ActionResult Edit(InventarioServiciosViewModel inventarioServicios)
+        {
+
+
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.PutResponse("api/InventarioServicios", inventarioServicios);
+            response.EnsureSuccessStatusCode();
+            return RedirectToAction("Details", new { id = inventarioServicios.IdProducto });
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+
+
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.GetResponse("api/InventarioServicios/" + id.ToString());
+            response.EnsureSuccessStatusCode();
+            InventarioServiciosViewModel InventarioServiciosViewModel = response.Content.ReadAsAsync<InventarioServiciosViewModel>().Result;
+            //ViewBag.Title = "All Products";
+            return View(InventarioServiciosViewModel);
+        }
+
+
+        [HttpPost]
+        public ActionResult Delete(InventarioServiciosViewModel inventarioServicios)
+        {
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.DeleteResponse("api/inventarioServicios/" + inventarioServicios.IdProducto.ToString());
+            response.EnsureSuccessStatusCode();
+            bool Eliminado = response.Content.ReadAsAsync<bool>().Result;
+
+            if (Eliminado)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+
+
+
     }
+
+
 }

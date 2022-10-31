@@ -75,13 +75,13 @@ namespace BackEnd.Controllers
         #region Eliminar
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
-        public JsonResult Delete(int id)
+        public bool Delete(int id)
         {
             try
             {
                 InventarioServicio producto = new InventarioServicio { IdProducto = id };
                 inventarioDAL.Remove(producto);
-                return new JsonResult(producto);
+                return true;
             }
             catch (Exception)
             {

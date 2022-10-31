@@ -42,7 +42,15 @@
                 <td> <div class="form-group" style="text-align: center; readonly">    @Html.DisplayFor(modelItem => item.CantidadDisponible)</div></td>
                 @*<td> <div class="form-group" style="text-align: center; readonly">@item.URL_IMAGE </div></td>*@
                 <td> <div class="form-group" style="text-align: center; readonly">    @Html.DisplayFor(modelItem => item.IdServicio) </div></td>
+                <td>
+                    
+                      <div class="form-group form-inline" style="text-align: center;">
+                     
+                       @Html.ActionLink("Edit", "Edit", new { id=item.IdProducto })  |
+                       @Html.ActionLink("Delete", "Delete", new {id=item.IdProducto })
 
+                        </div>
+                </td>
             </tr>
         }
 
