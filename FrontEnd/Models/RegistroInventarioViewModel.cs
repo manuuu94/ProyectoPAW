@@ -1,0 +1,15 @@
+﻿namespace FrontEnd.Models
+{
+    public class RegistroInventarioViewModel
+    {
+
+        public int Id { get; set; }
+        public string? Accion { get; set; }
+        public string? Descripcion { get; set; }
+        public int? Cantidad { get; set; }
+        public DateTime? Fecha { get; set; }
+        public int? IdServicio { get; set; }
+
+        
+    }
+}
