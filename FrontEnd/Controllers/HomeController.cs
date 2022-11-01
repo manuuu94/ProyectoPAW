@@ -23,6 +23,11 @@ namespace FrontEnd.Controllers
             return View();
         }
 
+        public IActionResult Ubicacion()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
