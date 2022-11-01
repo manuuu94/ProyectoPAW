@@ -60,13 +60,13 @@
 <br />
 <br />
 <br />
+ 
 
-@using (Html.BeginForm("AñadirCarrito", "Inventario", FormMethod.Post))
-{
-    @Html.Hidden("CarritoMsj", (string)ViewBag.Mensaje);
+        
 
+ 
     <table class="table table-bordered table-hover">
-        <thead>
+         <thead>
             <tr>
                 <th>ID</th>
                 <th>Cantidad</th>
@@ -75,18 +75,19 @@
         </thead>
         <tbody>
             <tr>
-                <td>  @Html.DisplayNameFor(model => model.IdProducto) </td>
-                <td>@Html.DisplayNameFor(model => model.IdProducto) )</td>
-
+                <td> </td>
+               
+                 <td> 
+                 </td>
                 <td>
                     <div class="form-group" style="text-align: center;">
                         <input style="background-color:black;color:white" type="submit" value="Añadir al Carrito" class="text-center btn2 float-center login_btn">
                     </div>
                 </td>
             </tr>
+           
         </tbody>
     </table>
-}
 
 @section Scripts
 {
