@@ -6,10 +6,15 @@
 
 }
 
-<h1>Details</h1>
+<h1>Detalles</h1>
+
+
+<head>      
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
 
 <div>
-    <h4>InventarioServiciosViewModel</h4>
+    <h4>Detalles Producto</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -51,6 +56,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdProducto }) |
+    <a asp-action="Index">Regresar</a>
 </div>

@@ -6,11 +6,16 @@
 
 }
 
-<h1>Delete</h1>
+<h1>Eliminar</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+
+<head>      
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+
+<h3>Quiere eliminar el producto?</h3>
 <div>
-    <h4>InventarioServiciosViewModel</h4>
+    <h4>Eliminar Producto</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -53,7 +58,7 @@
     
     <form asp-action="Delete">
         @Html.HiddenFor(Model=>Model.IdProducto)
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Borrar" class="btn btn-danger" /> |
+        <a asp-action="Index">Regresar</a>
     </form>
 </div>
