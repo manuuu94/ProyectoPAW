@@ -5,22 +5,13 @@
                 Layout = "~/Views/Shared/_Internal_Layout.cshtml";
 }
 
-<h1>VER EMPLEADOS</h1>
+<h1>Todos los empleados</h1>
 
 <head>
-    <!--
-    <script src="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></script>
-    <script src="//cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css"></script>
-        -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+
 </head>
 
-<table id="tbEmpleado" class="table table-bordered table-hover">
+<table id="tbEmpleado" class="table table-hover">
 
     <thead>
         <tr>
@@ -29,8 +20,8 @@
             <th> @Html.DisplayNameFor(model => model.Apellido1)</th>
             <th>@Html.DisplayNameFor(model => model.Apellido2)</th>
             <th>@Html.DisplayNameFor(model => model.Username)</th>
-            <th>  @Html.DisplayNameFor(model => model.Passhash)</th>
-            <th>  @Html.DisplayNameFor(model => model.FechaIngreso)</th>
+@*            <th>  @Html.DisplayNameFor(model => model.Passhash)</th>
+*@            <th>  @Html.DisplayNameFor(model => model.FechaIngreso)</th>
             <th>  @Html.DisplayNameFor(model => model.Correo)</th>
             <th>  @Html.DisplayNameFor(model => model.IdRol)</th>
             <th>  @Html.DisplayNameFor(model => model.IdRol)</th>
@@ -46,16 +37,16 @@
                 <td> <div class="form-group" style="text-align: center; readonly">  @Html.DisplayFor(modelItem => item.Apellido1)</div></td>
                 <td> <div class="form-group" style="text-align: center; readonly">    @Html.DisplayFor(modelItem => item.Apellido2)</div></td>
                 <td> <div class="form-group" style="text-align: center; readonly">   @Html.DisplayFor(modelItem => item.Username) </div></td>
-                <td> <div class="form-group" style="text-align: center; readonly">    @Html.DisplayFor(modelItem => item.Passhash) </div></td>
-                <td> <div class="form-group" style="text-align: center; readonly">    @Html.DisplayFor(modelItem => item.FechaIngreso) </div></td>
+@*                <td> <div class="form-group" style="text-align: center; readonly">    @Html.DisplayFor(modelItem => item.Passhash) </div></td>
+*@                <td> <div class="form-group" style="text-align: center; readonly">    @Html.DisplayFor(modelItem => item.FechaIngreso) </div></td>
                 <td> <div class="form-group" style="text-align: center; readonly">    @Html.DisplayFor(modelItem => item.Correo) </div></td>
                 <td> <div class="form-group" style="text-align: center; readonly">    @Html.DisplayFor(modelItem => item.IdRol) </div></td>
                 <td>
                     
                       <div class="form-group form-inline" style="text-align: center;">
 
-                        @Html.ActionLink("Edit", "Edit", new { id=item.IdEmpleado })  |
-                        @Html.ActionLink("Delete", "Delete", new {id=item.IdEmpleado })
+                        @Html.ActionLink("Editar", "Edit", new { id=item.IdEmpleado })  |
+                        @Html.ActionLink("Eliminar", "Delete", new {id=item.IdEmpleado })
 
                         </div>
                 </td>
@@ -67,5 +58,5 @@
 
 
 <div class="form-group" style="text-align: center;">
-                        <input style="background-color:black;color:white" type="submit" value="Registrar Nuevo Empleado" class="text-center btn2 float-center login_btn">
-                    </div>
+<a href="@Url.Action("Create", "EmpleadoNuevo")" style="background-color:black;color:white" class="btn btn-primary" >Registrar Nuevo Empleado<a/>
+</div>

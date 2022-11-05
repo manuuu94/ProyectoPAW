@@ -24,7 +24,9 @@ namespace BackEnd.Controllers
         {
             IEnumerable<Usuario> result;
             result = usuarioDAL.ValidarUsuario(usuario);
+
             return new JsonResult(result);
+
         }
         #endregion
 

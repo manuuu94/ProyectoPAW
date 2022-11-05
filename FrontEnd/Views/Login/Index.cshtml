@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
-            Layout = "~/Views/Shared/_Internal_Layout.cshtml";
+            //Layout = null;
 }
 
 <!DOCTYPE html>
@@ -43,7 +43,7 @@ html, body {
                     </div>
                 </div>
                 <div class="card-body">
-                    @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+                    @using (Html.BeginForm("Validar", "Login", FormMethod.Post))
                     {
                         <br>
 
@@ -53,24 +53,26 @@ html, body {
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                          <input type="text" id="lname" name="lname"><br><br>
+                              @Html.TextBoxFor(Model => Model.Username, new { placeholder = "Usuario", @class = "form-control" });
+                         @* <input type="text" id="lname" name="lname"><br><br>*@
                         </div>
 
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                           <input type="text" id="lname" name="lname"><br><br>
-                        </div>
+                            @Html.PasswordFor(Model => Model.Password, new { placeholder = "Contraseña", @class = "form-control" });
+@*                           <input type="text" id="lname" name="lname"><br><br>
+*@                        </div>
 
                         <div class="form-group" style="text-align: center;">
-                            <input type="submit" value="Iniciar sesion" class=" text-center btn float-center login_btn">
+                            <input type="submit" value="Iniciar sesión" style="background-color:black;color:white" class="btn btn-primary">
                         </div>
                     }
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center">
-                        <a @Html.ActionLink("Olvidé contraseña", "ResetPass", "Login", new { @class = "elements" }) </a>
+                        <a> @Html.ActionLink("Olvidé contraseña", "ResetPass", "Login", new { @class = "elements" }) </a>
                     </div>
                 </div>
             </div>

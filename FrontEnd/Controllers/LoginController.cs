@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FrontEnd.Helpers;
+using FrontEnd.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace FrontEnd.Controllers
 {
@@ -11,12 +14,44 @@ namespace FrontEnd.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Validar(LoginViewModel empleado)
+        {
+            try
+            {
+
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.PostResponse("api/Usuario/ValidarUsuario",empleado);
+                response.EnsureSuccessStatusCode();
+                //LoginViewModel loginViewModel = response.Content.ReadAsAsync<LoginViewModel>().Result;
+                var content = response.Content.ReadAsStringAsync().Result;
+                List<LoginViewModel> login = JsonConvert.DeserializeObject<List<LoginViewModel>>(content); //lista
+                if (login.Count>0)
+                {
+                    return RedirectToAction("Index","Home");
+                }
+                return RedirectToAction("Index");
+            }
+            catch (HttpRequestException)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            catch (Exception
+            )
+            {
+
+                throw;
+            }
+        }
+
         [HttpGet]
         public ActionResult LogOut()
         {
             //modelocarrito.VaciarCarrito();
-            //Session.Clear();
-            //Session.Abandon();
+            //HttpContext.Session.Clear();
 
 
             return RedirectToAction("Index", "Login");
