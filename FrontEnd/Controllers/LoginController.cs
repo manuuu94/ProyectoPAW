@@ -11,6 +11,17 @@ namespace FrontEnd.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+            //modelocarrito.VaciarCarrito();
+            //Session.Clear();
+            //Session.Abandon();
+
+
+            return RedirectToAction("Index", "Login");
+        }
+
         // GET: LoginController/Details/5
         public ActionResult Details(int id)
         {

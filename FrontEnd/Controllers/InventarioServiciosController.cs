@@ -38,8 +38,6 @@ namespace FrontEnd.Controllers
             try
             {
 
-
-
                 ServiceRepository serviceObj = new ServiceRepository();
                 HttpResponseMessage response = serviceObj.PostResponse("api/InventarioServicios", inventario);
                 response.EnsureSuccessStatusCode();
