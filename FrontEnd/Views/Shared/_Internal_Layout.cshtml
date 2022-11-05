@@ -41,8 +41,8 @@
 *@
 	        <ul class="list-unstyled components mb-5">
 	          <li class="active">
-	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inventario</a>
-	            <ul class="collapse list-unstyled" id="homeSubmenu">
+	            <a href="#invSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inventario</a>
+	            <ul class="collapse list-unstyled" id="invSubmenu">
                 <li>
                     <a href="@Url.Action("Index", "InventarioServicios")">Ver Inventario</a>
                 </li>
@@ -50,35 +50,94 @@
                     <a href="@Url.Action("Create", "InventarioServicios")">Añadir productos</a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "RegistrosInventario")">Registros de Inventario</a>
+                    <a href="@Url.Action("Index", "RegistroInventario")">Registros de Inventario</a>
                 </li>
 	            </ul>
 	          </li>
-	          <li>
-	              <a href="#">About</a>
-	          </li>
-	          <li>
-              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-              <ul class="collapse list-unstyled" id="pageSubmenu">
+
+	          <li class="active">
+	            <a href="#carroSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Carrito</a>
+	            <ul class="collapse list-unstyled" id="carroSubmenu">
                 <li>
-                    <a href="#">Page 1</a>
+                    <a href="@Url.Action("Index", "Carrito")">Ver Carrito</a>
                 </li>
                 <li>
+                    <a href="@Url.Action("Index", "RegistroCompras")">Registro Compras</a>
+                </li>
+@*                <li>
+                    <a href="@Url.Action("Index", "RegistrosInventario")">Registros de Inventario</a>
+                </li>*@
+	            </ul>
+	          </li>
+
+	          <li class="active">
+              <a href="#clientesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Sobre Clientes</a>
+              <ul class="collapse list-unstyled" id="clientesSubmenu">
+                <li>
+                    <a href="@Url.Action("Index", "ClientesAtendido")">Ver Clientes Atendidos</a>
+                </li>
+@*                <li>
                     <a href="#">Page 2</a>
                 </li>
                 <li>
                     <a href="#">Page 3</a>
-                </li>
+                </li>*@
               </ul>
 	          </li>
-	          <li>
-              <a href="#">Portfolio</a>
+
+              <li class="active">
+              <a href="#emplSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Empleados</a>
+              <ul class="collapse list-unstyled" id="emplSubmenu">
+                <li>
+                    <a href="@Url.Action("Index", "Empleado")">Ver Empleados</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Create", "EmpleadoNuevo")">Registrar nuevo empleado</a>
+                </li>
+@*                <li>
+                    <a href="#">Page 3</a>
+                </li>*@
+              </ul>
 	          </li>
-	          <li>
+
+
+              <li class="active">
+              <a href="#configSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Configuración</a>
+              <ul class="collapse list-unstyled" id="configSubmenu">
+                <li>
+                    <a href="@Url.Action("Index", "Empleado")">Ver su Perfil</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("CambiarContraseña", "Login")">Cambiar contraseña</a>
+                </li>
+@*                <li>
+                    <a href="#">Page 3</a>
+                </li>*@
+              </ul>
+	          </li>
+
+	          <li class="active">
               <a href="#">Contact</a>
 	          </li>
+
 	        </ul>
+
 	        <div class="footer">
+
+                              <a href="#locSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Extras</a>
+              <ul class="collapse list-unstyled" id="locSubmenu">
+                <li>
+                    <a href="@Url.Action("Ubicacion", "Home")">Ubicación</a>
+                </li>
+@*                <li>
+                    <a href="@Url.Action("Create", "EmpleadoNuevo")">Ver Clientes Atendidos</a>
+                </li>*@
+@*                <li>
+                    <a href="#">Page 3</a>
+                </li>*@
+              </ul>
+	          </li>
+
 	        	<p>Cerrar Sesión@*<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
 						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->*@</p>
@@ -86,6 +145,8 @@
                 <a href="@Url.Action("LogOut", "Login")">
                     <i class="fa fa-power-off"></i>
                 </a>
+
+
             </div>
                       
            </div>

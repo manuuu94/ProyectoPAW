@@ -6,7 +6,7 @@
         public string Descripcion { get; set; } = null!;
         public decimal Precio { get; set; }
         public int CantidadDisponible { get; set; }
-        public string UrlImage { get; set; }
+        public string? UrlImage { get; set; }
         public int IdServicio { get; set; }
     }
 }
