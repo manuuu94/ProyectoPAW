@@ -126,7 +126,9 @@ namespace FrontEnd.Controllers
                return View(EmpleadoViewModel);
             }
 
-        }
+
+
+    }
 
     }
 

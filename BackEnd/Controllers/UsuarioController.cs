@@ -32,12 +32,12 @@ namespace BackEnd.Controllers
 
         [Route("cambiaContraseña")]
         [HttpPost]
-        public Usuario cambiaContraseña([FromBody] Usuario usuario)
+        public bool cambiaContraseña([FromBody] Usuario usuario)
         {
             try
-            {
+            {   
                 usuarioDAL.CambiaContraseña(usuario);
-                return usuario;
+                return true;
             }
             catch (Exception)
             {

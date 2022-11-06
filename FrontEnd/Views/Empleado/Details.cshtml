@@ -1,16 +1,18 @@
-﻿@model FrontEnd.Models.EmpleadoViewModel
+﻿@*@page*@
+
+@model FrontEnd.Models.EmpleadoViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Perfil de Empleado";
             Layout = "~/Views/Shared/_Internal_Layout.cshtml";
 
 }
 
 <div align="center">
-<h1>Perfil de Empleado</h1>
+<h1>@ViewData["Title"]</h1>
 
 <div>
-    <h4>Vista Empleado : @*@HttpContext.Session.GetInt32("SessionUser").ToString(); *@</h4> 
+    <h4>Vista Empleado : @*@HttpContext.Session.GetInt32("SessionUser").ToString();*@ </h4> 
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -71,6 +73,6 @@
 </div>
 <div>
 @*    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-*@    <a asp-action="Index">Regresar</a>
+*@    @*<a asp-action="Index">Regresar</a>*@
 </div>
 </div>

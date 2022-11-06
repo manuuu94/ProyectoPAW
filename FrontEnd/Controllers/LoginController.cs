@@ -21,7 +21,6 @@ namespace FrontEnd.Controllers
         {
             try
             {
-
                 ServiceRepository serviceObj = new ServiceRepository();
                 HttpResponseMessage response = serviceObj.PostResponse("api/Usuario/ValidarUsuario",empleado);
                 response.EnsureSuccessStatusCode();
@@ -50,6 +49,40 @@ namespace FrontEnd.Controllers
                 throw;
             }
         }
+
+        [HttpGet]
+        public ActionResult changePass(LoginViewModel user)
+        {
+            int sessionUser = (int)HttpContext.Session.GetInt32("SessionUser");
+
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.GetResponse("api/empleado/" + sessionUser.ToString());
+            response.EnsureSuccessStatusCode();
+            Models.EmpleadoViewModel EmpleadoViewModel = response.Content.ReadAsAsync<Models.EmpleadoViewModel>().Result;
+            user.Id_Empleado = sessionUser;
+            user.Username = EmpleadoViewModel.Username;
+            user.Password = null;
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult changePassword(LoginViewModel user)
+        {
+            try
+            {
+                LoginHelper helper = new LoginHelper();
+                helper.changePass(user);
+
+                return RedirectToAction("changePass", "Login");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
 
         [HttpGet]
         public ActionResult LogOut()
