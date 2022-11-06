@@ -12,6 +12,8 @@ namespace DAL.Interfaces
         bool AñadeEmpleado(EmpleadoNuevo empleado);
         List<Empleado> Get();
 
+        //List<Empleado> GetUser(string user);
+
         //Usuario ValidarUsuario(Usuario usuario);
     }
 }

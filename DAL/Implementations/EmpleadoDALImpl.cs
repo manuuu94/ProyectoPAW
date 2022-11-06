@@ -298,5 +298,39 @@ namespace DAL.Implementations
             throw new NotImplementedException();
         }
 
+        //public List<Empleado> GetUser(string user)
+        //{
+        //    using (var conexion = new PROYECTO_PAWContext())
+        //    {
+        //        try
+        //        {
+        //            var datos = (from x in conexion.Empleados
+        //                         where x.Username == user
+        //                         select x).ToList();
+        //            List<Empleado> lista = new List<Empleado>();
+        //            foreach (var dato in datos)
+        //            {
+        //                lista.Add(new Empleado
+        //                {
+        //                    IdEmpleado = dato.IdEmpleado,
+        //                    Nombre = dato.Nombre,
+        //                    Apellido1 = dato.Apellido1,
+        //                    Apellido2 = dato.Apellido2,
+        //                    Username = dato.Username,
+        //                    Passhash = null,
+        //                    FechaIngreso = dato.FechaIngreso,
+        //                    IdRol = dato.IdRol,
+        //                    Correo = dato.Correo
+        //                });
+        //            }
+        //            return lista;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            conexion.Dispose();
+        //            throw ex;
+        //        }
+        //    }
+        //}
     }
 }

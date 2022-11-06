@@ -33,46 +33,39 @@ html, body {
              <br> <br/>
              <br> <br/>
              <br> <br/>
-            <div class="card">
+            <div class="card" style="height:fit-content">
                 <div class="card-header">
-                    <h3>Inicio de sesion</h3>
+                    <br />
+                    <h3>Inicio de sesión</h3>
                     <div class="d-flex justify-content-end social_icon">
                        
                         <a href="https://www.facebook.com/"><span><i class="fab fa-facebook-square"></i></span></a>
                         <a href="https://twitter.com/home"><span><i class="fab fa-twitter-square"></i></span></a>
+                        
                     </div>
+                  
                 </div>
                 <div class="card-body">
 
-            <form asp-action="Validar" enctype="multipart/form-data">
+        <form asp-action="Validar" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-@*            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <input asp-for="CategoryId" class="form-control" />
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
-                <label asp-for="Username" class="control-label"></label>
+
+            <div class="form-group">                                       
+                <label asp-for="Username" class="control-label fas fa-user" style="color:white">Usuario</label>
                 <input asp-for="Username" class="form-control" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+
+            <div class="form-group">                                       
+                <label asp-for="Password" class="control-label fas fa-key" style="color:white">Contraseña</label>
+                <input asp-for="Password" type="password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
-            <div class="form-group" >
+            <div class="form-group" style="text-align:center" >
                 <input type="submit" value="Entrar" class="btn btn-primary" style="background-color:black;color:white"/>
             </div>
         </form>
-
 
                 </div>
                 <div class="card-footer">
@@ -89,5 +82,6 @@ html, body {
 {
     <script src="~/Funciones/Login.js"></script>
     <script src="~/Funciones/Generales.js"></script>
+     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 

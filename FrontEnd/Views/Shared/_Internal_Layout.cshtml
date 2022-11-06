@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿
+<!doctype html>
 <html lang="en">
   <head>
   	<title>AUTO LAVADO</title>
@@ -105,7 +106,7 @@
               <a href="#configSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Configuración</a>
               <ul class="collapse list-unstyled" id="configSubmenu">
                 <li>
-                    <a href="@Url.Action("Index", "Empleado")">Ver su Perfil</a>
+                    <a href="@Url.Action("Details", "Empleado")">Ver su Perfil</a>
                 </li>
                 <li>
                     <a href="@Url.Action("CambiarContraseña", "Login")">Cambiar contraseña</a>
@@ -138,10 +139,10 @@
               </ul>
 	          </li>
 
-	        	<p>Cerrar Sesión@*<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	        	<p>@*<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
 						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->*@</p>
-	            <div class="sidebar-footer">
+	            <div class="sidebar-footer" style="text-align:center">
                 <a href="@Url.Action("LogOut", "Login")">
                     <i class="fa fa-power-off"></i>
                 </a>

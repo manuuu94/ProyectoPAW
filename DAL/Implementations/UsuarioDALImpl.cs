@@ -105,11 +105,11 @@ namespace DAL.Implementations
                         lista.Add(
                             new Usuario
                             {
+                                Id_Empleado = item.Id_Empleado,
                                 Username = item.Username,
                                 Password = null
                             });
                     }
-
                     return lista;
 
                 }

@@ -38,8 +38,6 @@ namespace FrontEnd.Controllers
                 try
                 {
 
-
-
                     ServiceRepository serviceObj = new ServiceRepository();
                     HttpResponseMessage response = serviceObj.PostResponse("api/Empleado", empleado);
                     response.EnsureSuccessStatusCode();
@@ -114,12 +112,14 @@ namespace FrontEnd.Controllers
                 }
             }
 
-            public ActionResult Details(int id)
+            
+
+            public ActionResult Details()
             {
+            int sessionUser = (int)HttpContext.Session.GetInt32("SessionUser");
 
-
-                ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.GetResponse("api/empleados/" + id.ToString());
+            ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.GetResponse("api/empleado/" + sessionUser.ToString());
                 response.EnsureSuccessStatusCode();
                 Models.EmpleadoViewModel EmpleadoViewModel = response.Content.ReadAsAsync<Models.EmpleadoViewModel>().Result;
                //ViewBag.Title = "All Empleados";

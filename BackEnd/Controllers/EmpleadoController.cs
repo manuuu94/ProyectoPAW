@@ -30,6 +30,7 @@ namespace BackEnd.Controllers
         //}
         //#endregion
 
+        //el que funciona con el frontend
         #region Consultar
         [HttpGet]
         public JsonResult Get()
@@ -47,6 +48,16 @@ namespace BackEnd.Controllers
             empleado = empleadoDAL.Get(id);
             return new JsonResult(empleado);
         }
+
+        //[Route("GetUser")]
+        //[HttpGet("{user}", Name = "Get3")]
+        //public JsonResult Get(string user)
+        //{
+        //    List<Empleado> empleado;
+        //    empleado = empleadoDAL.GetUser(user);
+        //    return new JsonResult(empleado);
+        //}
+
 
         // POST api/<EmpleadoController>
         [HttpPost]

@@ -28,8 +28,12 @@ namespace FrontEnd.Controllers
                 //LoginViewModel loginViewModel = response.Content.ReadAsAsync<LoginViewModel>().Result;
                 var content = response.Content.ReadAsStringAsync().Result;
                 List<LoginViewModel> login = JsonConvert.DeserializeObject<List<LoginViewModel>>(content); //lista
-                if (login.Count>0)
+                if (login.Count > 0)
                 {
+                    //Session
+                    HttpContext.Session.SetInt32("SessionUser", (int)login.FirstOrDefault().Id_Empleado);
+
+
                     return RedirectToAction("Index","Home");
                 }
                 return RedirectToAction("Index");

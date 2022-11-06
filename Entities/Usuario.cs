@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
+
         [Keyless]
         public class Usuario
         {
-            public string Username { get; set; } = null!;
+        //[NotMapped]
+        public int? Id_Empleado { get; set; } 
+        public string Username { get; set; } = null!;
 
         [NotMapped]
         public string? Password { get; set; }/* = null!;*/

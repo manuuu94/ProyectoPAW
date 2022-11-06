@@ -51,7 +51,7 @@ namespace DAL.Implementations
                             //si no existe, pedir NOMBRE CORREO TELEFONO del cliente.
                             var datosclientes = (from x in conexion.ClientesAtendidos
                                                  where x.CedulaCliente == registroCompra.CedulaCliente
-                            select x).ToList();
+                                                    select x).ToList();
                             if (datosclientes.Count == 0 && registroCompra.NombreCliente != null && registroCompra.Correo != null
                             && registroCompra.Telefono != null && (registroCompra.IdMetodo == 1 || registroCompra.IdMetodo == 2))
                             {
