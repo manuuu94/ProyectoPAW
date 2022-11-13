@@ -5,7 +5,7 @@
             Layout = "~/Views/Shared/_Internal_Layout.cshtml";
 }
 
-<h1>Registro Inventario</h1>
+<h1>Registro de Inventario</h1>
 
 
 @*<head>      
@@ -31,7 +31,7 @@
                 @Html.DisplayNameFor(model => model.Fecha)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdServicio)
+                @Html.DisplayNameFor(model => model.Servicio.NombreServicio)
             </th>
             <th></th>
         </tr>
@@ -55,7 +55,7 @@
                 @Html.DisplayFor(modelItem => item.Fecha)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdServicio)
+                @Html.DisplayFor(modelItem => item.Servicio.NombreServicio)
             </td>
            
         </tr>

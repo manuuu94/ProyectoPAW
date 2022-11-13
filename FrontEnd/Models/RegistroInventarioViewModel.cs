@@ -8,8 +8,10 @@
         public string? Descripcion { get; set; }
         public int? Cantidad { get; set; }
         public DateTime? Fecha { get; set; }
-        public int? IdServicio { get; set; }
+        public int IdServicio { get; set; }
 
-        
+        public ServicioViewModel Servicio { get; set; }
+
+
     }
 }
