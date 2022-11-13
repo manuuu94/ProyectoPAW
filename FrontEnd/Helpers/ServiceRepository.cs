@@ -16,7 +16,7 @@ namespace FrontEnd.Helpers
         {
             Client = new HttpClient();
             Client.BaseAddress = new Uri("http://localhost:5182/");
-           
+            Client.DefaultRequestHeaders.Add("ApiKey", "12345");
         }
 
       

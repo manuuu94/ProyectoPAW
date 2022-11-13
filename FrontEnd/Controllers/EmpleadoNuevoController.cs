@@ -80,7 +80,7 @@ namespace FrontEnd.Controllers
             ServiceRepository serviceObj = new ServiceRepository();
             HttpResponseMessage response = serviceObj.PutResponse("api/Empleado", empleados);
             response.EnsureSuccessStatusCode();
-            return RedirectToAction("Index","Empleado",new { id = empleados.IdEmpleado });
+            return RedirectToAction("Index","EmpleadoNuevo",new { id = empleados.IdEmpleado });
         }
 
         [HttpGet]
@@ -101,7 +101,7 @@ namespace FrontEnd.Controllers
         public ActionResult Delete(EmpleadoNuevoViewModel empleados)
         {
             ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.DeleteResponse("api/empleados/" + empleados.IdEmpleado.ToString());
+            HttpResponseMessage response = serviceObj.DeleteResponse("api/empleado/" + empleados.IdEmpleado.ToString());
             response.EnsureSuccessStatusCode();
             bool Eliminado = response.Content.ReadAsAsync<bool>().Result;
 

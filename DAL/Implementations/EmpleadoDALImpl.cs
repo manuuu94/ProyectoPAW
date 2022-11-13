@@ -247,7 +247,7 @@ namespace DAL.Implementations
                 }
             }
         }
-
+        
         public IEnumerable<Empleado> GetAll()
         {
             try

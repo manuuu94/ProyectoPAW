@@ -100,6 +100,7 @@ namespace BackEnd.Controllers
 
 
         #region Actualizar
+        // PUT api/<EmpleadoController>/5
         [HttpPut]
         public JsonResult Put([FromBody] Empleado empleado)
         {
