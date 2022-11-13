@@ -8,5 +8,8 @@
         public int CantidadDisponible { get; set; }
         public string? UrlImage { get; set; }
         public int IdServicio { get; set; }
+
+        public ServicioViewModel Servicio { get; set; }
+
     }
 }

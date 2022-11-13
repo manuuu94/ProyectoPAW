@@ -7,6 +7,39 @@ namespace FrontEnd.Controllers
 {
     public class InventarioServiciosController : Controller
     {
+
+        private List<ServicioViewModel> GetServicio()
+        {
+            ServicioHelper ServicioHelper = new ServicioHelper();
+            List<ServicioViewModel> servicio = ServicioHelper.GetAll();
+
+
+            return servicio;
+
+
+        }
+
+        private ServicioViewModel GetServicio(int id)
+        {
+            try
+            {
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.GetResponse("api/servicio/" + id.ToString());
+                response.EnsureSuccessStatusCode();
+                ServicioViewModel ServicioViewModel =
+                    response.Content.ReadAsAsync<ServicioViewModel>().Result;
+                //ViewBag.Title = "All Products";
+
+                return ServicioViewModel;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
         public IActionResult Index()
         {
             try
@@ -17,7 +50,18 @@ namespace FrontEnd.Controllers
                 var content = responseMessage.Content.ReadAsStringAsync().Result;
                 List<InventarioServiciosViewModel> inventario = JsonConvert.DeserializeObject<List<InventarioServiciosViewModel>>(content); //lista
 
+                List<InventarioServiciosViewModel> resultado = new List<InventarioServiciosViewModel>();
+
+                foreach (InventarioServiciosViewModel item in inventario)
+                {
+
+                    item.Servicio = this.GetServicio(item.IdServicio);
+                    resultado.Add(item);
+                }
+
+
                 return View(inventario);
+              
             }
             catch (Exception)
             {
