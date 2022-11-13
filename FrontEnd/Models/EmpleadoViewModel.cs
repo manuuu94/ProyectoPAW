@@ -2,6 +2,10 @@
 
 public class EmpleadoViewModel
 {
+
+
+
+
     public int IdEmpleado { get; set; }
     public string Nombre { get; set; } = null!;
     public string Apellido1 { get; set; } = null!;

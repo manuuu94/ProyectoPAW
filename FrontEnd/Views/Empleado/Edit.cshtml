@@ -1,23 +1,22 @@
-﻿@model FrontEnd.Models.EmpleadoNuevoViewModel
+﻿@model FrontEnd.Models.EmpleadoViewModel
 
 @{
-    ViewData["Title"] = "Create";
-                Layout = "~/Views/Shared/_Internal_Layout.cshtml";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Crear</h1>
+<h1>Edit</h1>
 
-@*<head>      
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-</head>*@
-
-<h4>Empleado nuevo</h4>
+<h4>EmpleadoViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          
+            <div class="form-group">
+                <label asp-for="IdEmpleado" class="control-label"></label>
+                <input asp-for="IdEmpleado" class="form-control" readonly />
+                <span asp-validation-for="IdEmpleado" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
@@ -39,9 +38,14 @@
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
+                <label asp-for="Passhash" class="control-label"></label>
+                <input asp-for="Passhash" class="form-control" />
+                <span asp-validation-for="Passhash" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaIngreso" class="control-label"></label>
+                <input asp-for="FechaIngreso" class="form-control" />
+                <span asp-validation-for="FechaIngreso" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Correo" class="control-label"></label>
@@ -54,7 +58,7 @@
                 <span asp-validation-for="IdRol" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

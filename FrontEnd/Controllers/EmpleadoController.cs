@@ -86,7 +86,7 @@ namespace FrontEnd.Controllers
 
 
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.GetResponse("api/Empleado/" + id.ToString());
+                HttpResponseMessage response = serviceObj.GetResponse("api/empleado/" + id.ToString());
                 response.EnsureSuccessStatusCode();
                 EmpleadoViewModel EmpleadoViewModel = response.Content.ReadAsAsync<EmpleadoViewModel>().Result;
                //ViewBag.Title = "All Empleados";
@@ -98,7 +98,7 @@ namespace FrontEnd.Controllers
             public ActionResult Delete(EmpleadoViewModel empleados)
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.DeleteResponse("api/empleados/" + empleados.IdEmpleado.ToString());
+                HttpResponseMessage response = serviceObj.DeleteResponse("api/empleado/" + empleados.IdEmpleado.ToString());
                 response.EnsureSuccessStatusCode();
                 bool Eliminado = response.Content.ReadAsAsync<bool>().Result;
 

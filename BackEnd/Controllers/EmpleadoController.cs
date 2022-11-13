@@ -83,12 +83,29 @@ namespace BackEnd.Controllers
         #region Eliminar
         // DELETE api/<EmpleadoController>/5
         [HttpDelete("{id}")]
-        public JsonResult Delete(int id)
+        public bool Delete(int id)
         {
             try
             {
                 Empleado empleado = new Empleado { IdEmpleado = id };
                 empleadoDAL.Remove(empleado);
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        #endregion
+
+
+        #region Actualizar
+        [HttpPut]
+        public JsonResult Put([FromBody] Empleado empleado)
+        {
+            try
+            {
+                empleadoDAL.Update(empleado);
                 return new JsonResult(empleado);
             }
             catch (Exception)
@@ -96,8 +113,7 @@ namespace BackEnd.Controllers
                 throw;
             }
         }
-    #endregion
-
+        #endregion
 
     }
 }

@@ -293,9 +293,22 @@ namespace DAL.Implementations
             throw new NotImplementedException();
         }
 
-        public bool Update(Empleado entity)
+        public bool Update(Empleado empleado)
         {
-            throw new NotImplementedException();
+            bool result = false;
+            try
+            {
+                using (UnidadDeTrabajo<Empleado> unidad = new UnidadDeTrabajo<Empleado>(context))
+                {
+                    unidad.genericDAL.Update(empleado);
+                    result = unidad.Complete();
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return result;
         }
 
         //public List<Empleado> GetUser(string user)

@@ -45,7 +45,8 @@
                     
                       <div class="form-group form-inline" style="text-align: center;">
 
-                        @Html.ActionLink("Editar", "Edit", new { id=item.IdEmpleado })  |
+                        @Html.ActionLink("Editar", "Edit", "EmpleadoNuevo", new { id=item.IdEmpleado })  |
+                           @Html.ActionLink("Editar", "Edit", new { id=item.IdEmpleado })  |
                         @Html.ActionLink("Eliminar", "Delete", new {id=item.IdEmpleado })
 
                         </div>
