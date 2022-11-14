@@ -1,14 +1,14 @@
-﻿@model FrontEnd.Models.LoginViewModel
+﻿@model FrontEnd.Models.Login2ViewModel
 
 @{
-    ViewData["Title"] = "Index";
-            //Layout = null;
-}
+    ViewData["Title"] = "Recuperar Contraseña";
+        //Layout = "~/Views/Shared/_Layout.cshtml";
 
+}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Iniciar sesion</title>
+    <title>Recuperar contraseña</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -26,62 +26,48 @@ html, body {
     font-family: 'Numans', sans-serif;
 }
 </style>
+
 <body>
-    
     <div class="container">
         <div class="d-flex justify-content-center h-100">
              <br> <br/>
              <br> <br/>
              <br> <br/>
-            <div class="card" style="height:fit-content">
+        <div class="card" style="height:fit-content">
                 <div class="card-header">
-                    <br />
-                    <h3>Inicio de sesión</h3>
-                    <div class="d-flex justify-content-end social_icon">
-                       
-                        <a href="https://www.facebook.com/"><span><i class="fab fa-facebook-square"></i></span></a>
-                        <a href="https://twitter.com/home"><span><i class="fab fa-twitter-square"></i></span></a>
-                        
-                    </div>
-                  
+                    <h3>Recuperar Contraseña</h3>
                 </div>
-                <div class="card-body">
+            <div class="card-body">
 
-        <form asp-action="Validar" >
+        <form asp-action="Validar2">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">                                       
-                <label asp-for="Username" class="control-label fas fa-user" style="color:white">Usuario</label>
+                <label asp-for="Username" class="control-label fas fa-user" style="color:black">Usuario</label>
                 <input asp-for="Username" class="form-control" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
 
-            <div class="form-group">                                       
-                <label asp-for="Password" class="control-label fas fa-key" style="color:white">Contraseña</label>
-                <input asp-for="Password" type="password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
 
             <div class="form-group" style="text-align:center" >
-                <input type="submit" value="Entrar" class="btn btn-primary" style="background-color:black;color:white"/>
+                <input type="submit" value="Cambiar contraseña" class="btn btn-primary" style="background-color:black;color:white"/>
             </div>
         </form>
 
                 </div>
                 <div class="card-footer">
-                    <div class="d-flex justify-content-center">
-                        <a> @Html.ActionLink("Olvidé contraseña", "forgotPass", "Login", new { @class = "elements" }) </a>
-                    </div>
+<div>
+    <a asp-action="Index">Volver a la página principal</a>
+</div>
+
                 </div>
             </div>
         </div>
     </div>
 </body>
 </html>
-@section Scripts
-{
-    <script src="~/Funciones/Login.js"></script>
-    <script src="~/Funciones/Generales.js"></script>
-     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
 
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

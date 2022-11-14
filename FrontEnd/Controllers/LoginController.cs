@@ -54,7 +54,7 @@ namespace FrontEnd.Controllers
         public ActionResult changePass(LoginViewModel user)
         {
             int sessionUser = (int)HttpContext.Session.GetInt32("SessionUser");
-
+            //ViewBag.user = sessionUser;
             ServiceRepository serviceObj = new ServiceRepository();
             HttpResponseMessage response = serviceObj.GetResponse("api/empleado/" + sessionUser.ToString());
             response.EnsureSuccessStatusCode();
@@ -81,6 +81,52 @@ namespace FrontEnd.Controllers
                 return View();
             }
         }
+
+
+        [HttpGet]
+        public ActionResult forgotPass()
+        {
+            return View();
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Validar2(Login2ViewModel empleado)
+        {
+            try
+            {
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.PostResponse("api/Usuario/validarUsuario2", empleado);
+                response.EnsureSuccessStatusCode();
+                //LoginViewModel loginViewModel = response.Content.ReadAsAsync<LoginViewModel>().Result;
+                //var content = response.Content.ReadAsStringAsync().Result;
+                //List<Login2ViewModel> login = JsonConvert.DeserializeObject<List<Login2ViewModel>>(content); //lista
+                //if (login.Count > 0)
+                //{
+                //    //Session
+                //    HttpContext.Session.SetInt32("SessionUser", (int)login.FirstOrDefault().Id_Empleado);
+
+
+                //    return RedirectToAction("Index", "Home");
+                //}
+                return RedirectToAction("Index");
+            }
+            catch (HttpRequestException)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            catch (Exception
+            )
+            {
+
+                throw;
+            }
+        }
+
+
+
 
 
 

@@ -13,5 +13,9 @@ namespace DAL.Interfaces
 
         bool CambiaContraseña(Usuario usuario);
 
+        bool forgotPassword(Usuario2 usuario);
+
+        Usuario2 ValidarUsuario2(Usuario2 usuario);
+
     }
 }
