@@ -31,7 +31,7 @@ namespace FrontEnd.Controllers
                     ServiceRepository serviceObj = new ServiceRepository();
                     HttpResponseMessage response = serviceObj.PostResponse("api/RegistrosCompra", registrocompra);
                     response.EnsureSuccessStatusCode();
-                    RegistroCompraViewModel RegistroCompraViewModel = response.Content.ReadAsAsync<RegistroCompraViewModel>().Result;
+                    //RegistroCompraViewModel RegistroCompraViewModel = response.Content.ReadAsAsync<RegistroCompraViewModel>().Result;
                     return RedirectToAction("Index" , "Carrito");
                 }
                 catch (HttpRequestException
