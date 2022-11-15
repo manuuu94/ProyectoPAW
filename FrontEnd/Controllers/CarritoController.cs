@@ -25,7 +25,7 @@ namespace FrontEnd.Controllers
             }
         }
 
-        [HttpDelete]
+        
         public ActionResult VaciarCarrito()
         {
             try
@@ -51,7 +51,6 @@ namespace FrontEnd.Controllers
             }
         }
 
-        [HttpDelete]
         public ActionResult EliminarProductoCarrito(CarritoViewModel carro)
         {
             ServiceRepository serviceObj = new ServiceRepository();

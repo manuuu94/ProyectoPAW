@@ -57,9 +57,9 @@
             </td>
             <td>
                     <div class="form-group" style="text-align: center;">
-                        @Html.ActionLink("Eliminar", "EliminarProductoCarrito", new
+                        @Html.ActionLink("Eliminar", "EliminarProductoCarrito" , "Carrito", new
                     { ID_PROD = item.IdPro},
-                    new { @class = "form-control", @style = "width:80px;height:25px;background-color:red;color:white" })
+                    new { @class = "form-control", @style = "width:80px;height:35px;background-color:red;color:white" })
                     </div>
              </td>
            
@@ -68,18 +68,31 @@
     </tbody>
 </table>
 
+ <br />
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
 <tr>
     <td>
         @Html.ActionLink("Vaciar Carrito", "VaciarCarrito", new { }, new
-        { @class = "form-control", @style = "text-align:center;width:auto; height:25px;background-color:red;color:white" })
+        { @class = "form-control", @style = "text-align:center;width:auto; height:35px;background-color:red;color:white" })
     </td>
     <td>
         @Html.ActionLink("Confirmar Compra", "ConfirmarCompra", new { }, new
         {
         @class = "form-control",
-        @style = "text-align:center;width:auto; height:25px;background-color:green;color:white"
+        @style = "text-align:center;width:auto; height:35px;background-color:green;color:white"
         ,
         onclick = "return validar();"
         })
     </td>
 </tr>
+    </tbody>
+</table>
