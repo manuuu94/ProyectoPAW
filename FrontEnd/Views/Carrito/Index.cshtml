@@ -14,7 +14,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdPro)
+                @Html.DisplayNameFor(model => model.IdProd)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Descripcion)
@@ -38,7 +38,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IdPro)
+                @Html.DisplayFor(modelItem => item.IdProd)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
@@ -57,12 +57,10 @@
             </td>
             <td>
                     <div class="form-group" style="text-align: center;">
-                        @Html.ActionLink("Eliminar", "EliminarProductoCarrito" , "Carrito", new
-                    { ID_PROD = item.IdPro},
+                        @Html.ActionLink("Eliminar", "EliminarProductoCarrito" , new { ID_PROD = item.IdProd},
                     new { @class = "form-control", @style = "width:80px;height:35px;background-color:red;color:white" })
                     </div>
              </td>
-           
         </tr>
 }
     </tbody>

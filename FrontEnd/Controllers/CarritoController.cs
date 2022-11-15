@@ -54,7 +54,7 @@ namespace FrontEnd.Controllers
         public ActionResult EliminarProductoCarrito(CarritoViewModel carro)
         {
             ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.DeleteResponse("api/Carrito/" + carro.IdProducto.ToString());
+            HttpResponseMessage response = serviceObj.DeleteResponse("api/Carrito/" + carro.IdProd.ToString());
             response.EnsureSuccessStatusCode();
             bool Eliminado = response.Content.ReadAsAsync<bool>().Result;
 

@@ -2,7 +2,7 @@
 {
     public class CarritoViewModel
     {
-        public int IdPro { get; set; }
+        public int IdProd { get; set; }
 
         public string Descripcion { get; set; }
 

@@ -90,7 +90,7 @@ namespace BackEnd.Controllers
         #region EliminarTodos
         // DELETE api/<CarritoController>
         [HttpDelete]
-        public bool DeleteAll(int id)
+        public bool DeleteAll()
         {
             try
             {
