@@ -68,17 +68,5 @@ namespace FrontEnd.Controllers
             }
         }
 
-        public ActionResult ConfirmarCompra()
-        {
-            try
-            {
-                return View();
-            }
-            catch (Exception)
-            {
-                return View("Error");
-            }
-        }
-
     }
 }
