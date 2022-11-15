@@ -46,12 +46,12 @@ namespace BackEnd.Controllers
         // POST api/<CarritoController>
         #region Agregar
         [HttpPost]
-        public JsonResult Post([FromBody] Carrito producto)
+        public JsonResult Post([FromBody] Carrito carrito)
         {
             try
             {
-                carritoDAL.Add(producto);
-                return new JsonResult(producto);
+                carritoDAL.Add(carrito);
+                return new JsonResult(carrito);
             }
             catch (Exception)
             {
@@ -76,9 +76,9 @@ namespace BackEnd.Controllers
         {
             try
             {
-                Carrito producto = new Carrito { IdProd = id };
-                carritoDAL.Remove(producto);
-                return new JsonResult(producto);
+                Carrito carrito = new Carrito { IdProd = id };
+                carritoDAL.Remove(carrito);
+                return new JsonResult(carrito);
             }
             catch (Exception)
             {
