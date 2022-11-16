@@ -12,7 +12,20 @@ namespace FrontEnd.Controllers
         {
             try
             {
-                return View();
+                ServiceRepository Repository = new ServiceRepository();
+                HttpResponseMessage responseMessage = Repository.GetResponse("api/Carrito");
+                responseMessage.EnsureSuccessStatusCode();
+                var content = responseMessage.Content.ReadAsStringAsync().Result;
+                List<CarritoViewModel> carrito = JsonConvert.DeserializeObject<List<CarritoViewModel>>(content); //lista
+                decimal total = 0;
+                foreach (var item in carrito)
+                {
+                    total = total + item.Total;
+                }
+                RegistroCompraViewModel registroCompraViewModel = new RegistroCompraViewModel();
+                registroCompraViewModel.TotalCompra = total;
+
+                return View(registroCompraViewModel);
             }
             catch (Exception)
             {

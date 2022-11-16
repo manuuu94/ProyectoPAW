@@ -5,11 +5,9 @@
                 Layout = "~/Views/Shared/_Internal_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Carrito</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -57,7 +55,7 @@
             </td>
             <td>
                     <div class="form-group" style="text-align: center;">
-                        @Html.ActionLink("Eliminar", "EliminarProductoCarrito" , new { ID_PROD = item.IdProd},
+                        @Html.ActionLink("Eliminar", "EliminarProductoCarrito" , new { IdProd = item.IdProd},
                     new { @class = "form-control", @style = "text-align:center;width:100px;height:35px;background-color:red;color:white" })
                     </div>
              </td>
@@ -68,7 +66,7 @@
 
  <br />
 
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th></th>
@@ -78,11 +76,11 @@
 
         <tbody>
 <tr>
-    <td>
+            <td class="table-hover">
         @Html.ActionLink("Vaciar Carrito", "VaciarCarrito", new { }, new
         { @class = "form-control", @style = "text-align:center;width:auto; height:35px;background-color:red;color:white" })
     </td>
-    <td>
+            <td class ="table-hover">
         @Html.ActionLink("Confirmar Compra", "ConfirmarCompra", "RegistroCompra" , new { }, new
         {
         @class = "form-control",

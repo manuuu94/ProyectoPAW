@@ -51,22 +51,30 @@ namespace FrontEnd.Controllers
             }
         }
 
-        public ActionResult EliminarProductoCarrito(CarritoViewModel carro)
-        {
-            ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.DeleteResponse("api/Carrito/" + carro.IdProd.ToString());
-            response.EnsureSuccessStatusCode();
-            bool Eliminado = response.Content.ReadAsAsync<bool>().Result;
+        //public ActionResult EliminarProductoCarrito(CarritoViewModel carro)
+        //{
+        //    ServiceRepository serviceObj = new ServiceRepository();
+        //    HttpResponseMessage response = serviceObj.DeleteResponse("api/Carrito/" + carro.IdProd.ToString());
+        //    response.EnsureSuccessStatusCode();
+        //    bool Eliminado = response.Content.ReadAsAsync<bool>().Result;
 
-            if (Eliminado)
+        //    if (Eliminado)
+        //    {
+        //        return RedirectToAction("Index");
+        //    }
+        //    else
+        //    {
+        //        throw new Exception();
+        //    }
+
+            public ActionResult EliminarProductoCarrito(int IdProd)
             {
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.DeleteResponse("api/Carrito/" + IdProd);
+                response.EnsureSuccessStatusCode();
                 return RedirectToAction("Index");
+
             }
-            else
-            {
-                throw new Exception();
-            }
-        }
 
     }
 }
