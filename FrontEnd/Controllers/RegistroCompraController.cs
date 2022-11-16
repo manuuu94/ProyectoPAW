@@ -8,6 +8,25 @@ namespace FrontEnd.Controllers
     public class RegistroCompraController : Controller
     {
 
+        public IActionResult Index()
+        {
+            try
+            {
+                ServiceRepository Repository = new ServiceRepository();
+                HttpResponseMessage responseMessage = Repository.GetResponse("api/RegistrosCompra");
+                responseMessage.EnsureSuccessStatusCode();
+                var content = responseMessage.Content.ReadAsStringAsync().Result;
+                List<RegistroCompraViewModel> registroCompras = JsonConvert.DeserializeObject<List<RegistroCompraViewModel>>(content); //lista
+
+                return View(registroCompras);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
         public ActionResult ConfirmarCompra()
         {
             try
