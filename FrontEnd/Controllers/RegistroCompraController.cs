@@ -8,6 +8,15 @@ namespace FrontEnd.Controllers
     public class RegistroCompraController : Controller
     {
 
+        private List<EmpleadoViewModel> GetEmpleados()
+        { 
+        EmpleadoHelper empleadohelper = new EmpleadoHelper();
+            List<EmpleadoViewModel> empleados = empleadohelper.GetEmpleados();
+
+            return empleados;
+
+        }
+
         public IActionResult Index()
         {
             try
@@ -43,6 +52,7 @@ namespace FrontEnd.Controllers
                 }
                 RegistroCompraViewModel registroCompraViewModel = new RegistroCompraViewModel();
                 registroCompraViewModel.TotalCompra = total;
+                registroCompraViewModel.Empleados = this.GetEmpleados();
 
                 return View(registroCompraViewModel);
             }

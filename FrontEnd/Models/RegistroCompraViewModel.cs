@@ -13,6 +13,14 @@
         public int IdEmpleado { get; set; }
         public string? NombreEmpleado { get; set; }
 
+        public MetodoPagoViewModel MetodoPago { get; set; }
+        //public string Descripcion { get; set; } 
+        public List<MetodoPagoViewModel> MetodosPago { get; set; }
+        public EmpleadoViewModel Empleado { get; set; }
+        //public string Nombre { get; set; }
+
+        public List<EmpleadoViewModel> Empleados { get; set; }
+
 
     }
 }
