@@ -73,13 +73,13 @@ namespace BackEnd.Controllers
                 throw;
             }
         }
-
+/*
         // PUT api/<EmpleadoController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
-
+*/
         #region Eliminar
         // DELETE api/<EmpleadoController>/5
         [HttpDelete("{id}")]

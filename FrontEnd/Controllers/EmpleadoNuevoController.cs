@@ -80,7 +80,7 @@ namespace FrontEnd.Controllers
             ServiceRepository serviceObj = new ServiceRepository();
             HttpResponseMessage response = serviceObj.PutResponse("api/Empleado", empleados);
             response.EnsureSuccessStatusCode();
-            return RedirectToAction("Index","EmpleadoNuevo",new { id = empleados.IdEmpleado });
+            return RedirectToAction("Index","Empleado",new { id = empleados.IdEmpleado });
         }
 
         [HttpGet]

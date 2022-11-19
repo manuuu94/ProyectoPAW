@@ -16,7 +16,7 @@ namespace Entities
         public string Apellido1 { get; set; } = null!;
         public string Apellido2 { get; set; } = null!;
         public string Username { get; set; } = null!;
-        public byte[]? Passhash { get; set; } = null!;
+        public byte[]? Passhash { get; set; }
         public DateTime FechaIngreso { get; set; }
         public string Correo { get; set; } = null!;
         public int IdRol { get; set; }

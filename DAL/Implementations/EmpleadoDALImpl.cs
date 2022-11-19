@@ -310,7 +310,12 @@ namespace DAL.Implementations
             }
             return result;
         }
-
+/*
+        public bool Update(Empleado entity)
+        {
+            throw new NotImplementedException();
+        }
+*/
         //public List<Empleado> GetUser(string user)
         //{
         //    using (var conexion = new PROYECTO_PAWContext())
