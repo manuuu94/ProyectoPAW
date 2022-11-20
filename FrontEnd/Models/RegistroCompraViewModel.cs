@@ -1,4 +1,6 @@
-﻿namespace FrontEnd.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FrontEnd.Models
 {
     public class RegistroCompraViewModel
     {
@@ -12,6 +14,9 @@
         public int? IdMetodo { get; set; }
         public int IdEmpleado { get; set; }
         public string? NombreEmpleado { get; set; }
+        
+        [NotMapped]
+        public string? TotalCompraStr { get; set; }
 
         public MetodoPagoViewModel MetodoPago { get; set; }
         //public string Descripcion { get; set; } 

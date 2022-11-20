@@ -51,7 +51,8 @@ namespace FrontEnd.Controllers
                     total = total + item.Total;
                 }
                 RegistroCompraViewModel registroCompraViewModel = new RegistroCompraViewModel();
-                registroCompraViewModel.TotalCompra = total;
+                registroCompraViewModel.TotalCompraStr = total.ToString();
+                //registroCompraViewModel.TotalCompra = total;
                 registroCompraViewModel.Empleados = this.GetEmpleados();
 
                 return View(registroCompraViewModel);
@@ -69,7 +70,7 @@ namespace FrontEnd.Controllers
             {
                 try
                 {
-
+                    registrocompra.TotalCompra = Decimal.Parse(registrocompra.TotalCompraStr);
                     ServiceRepository serviceObj = new ServiceRepository();
                     HttpResponseMessage response = serviceObj.PostResponse("api/RegistrosCompra", registrocompra);
                     response.EnsureSuccessStatusCode();
