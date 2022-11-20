@@ -8,7 +8,7 @@
 <h1>Carrito</h1>
 <div class="container">
 
-<table class="table table-hover">
+<table id="tbCarro" class="table table-hover">
 <div class="row">
   <div class="col-md-4">
     <thead>
@@ -39,7 +39,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td id="id_prod">
                 @Html.DisplayFor(modelItem => item.IdProd)
             </td>
             <td>
@@ -96,3 +96,9 @@
 </tr>
     </tbody>
 </table>
+
+@section Scripts
+{
+            <script src="~/js/Carrito.js"></script>
+        <script src="~/js/Generales.js"></script>
+}
