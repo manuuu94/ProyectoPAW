@@ -1,18 +1,18 @@
 ﻿@model FrontEnd.Models.EmpleadoNuevoViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
      Layout = "~/Views/Shared/_Internal_Layout.cshtml";
 }
 
-<h1>Editar</h1>
+<h1>Editar empleado</h1>
 
 @*<head>      
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 </head>*@
 
-<h4>EmpleadoNuevoViewModel</h4>
-<hr />
+@*<h4>EmpleadoNuevoViewModel</h4>
+*@<hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
@@ -61,7 +61,7 @@
 </div>
 
 <div>
-      <a class="nav-link text-dark" asp-area="" asp-controller="Empleado" asp-action="Index"> Volver</a>
+      <a class="nav-link text-dark" asp-area="" asp-controller="Empleado" asp-action="Index"> Regresar</a>
 </div>
 
 @section Scripts {

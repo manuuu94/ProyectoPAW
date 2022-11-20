@@ -293,29 +293,65 @@ namespace DAL.Implementations
             throw new NotImplementedException();
         }
 
+
         public bool Update(Empleado empleado)
         {
-            bool result = false;
-            try
+            using (var conexion = new PROYECTO_PAWContext())
             {
-                using (UnidadDeTrabajo<Empleado> unidad = new UnidadDeTrabajo<Empleado>(context))
+                try
                 {
-                    unidad.genericDAL.Update(empleado);
-                    result = unidad.Complete();
+                    var datos = (from x in conexion.Empleados
+                                 where x.IdEmpleado == empleado.IdEmpleado
+                                 select x).FirstOrDefault();
+                    if (datos != null)
+                    {
+                        datos.Nombre = empleado.Nombre;
+                        datos.Apellido1 = empleado.Apellido1;
+                        datos.Apellido2 = empleado.Apellido2;
+                        datos.Username = empleado.Username;
+                        // datos.PASSWORD = null;
+                        //datos.FECHA_INGRESO = empleado.FECHA_INGRESO;
+                        datos.IdRol = empleado.IdRol;
+                        datos.Correo = empleado.Correo;
+
+                        conexion.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    conexion.Dispose();
+                    throw ex;
+
                 }
             }
-            catch (Exception)
-            {
-                return false;
-            }
-            return result;
         }
-/*
-        public bool Update(Empleado entity)
-        {
-            throw new NotImplementedException();
-        }
-*/
+        //{
+        //    bool result = false;
+        //    try
+        //    {
+        //        using (UnidadDeTrabajo<Empleado> unidad = new UnidadDeTrabajo<Empleado>(context))
+        //        {
+        //            unidad.genericDAL.Update(empleado);
+        //            result = unidad.Complete();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return false;
+        //    }
+        //    return result;
+        //}
+        /*
+                public bool Update(Empleado entity)
+                {
+                    throw new NotImplementedException();
+                }
+        */
         //public List<Empleado> GetUser(string user)
         //{
         //    using (var conexion = new PROYECTO_PAWContext())
