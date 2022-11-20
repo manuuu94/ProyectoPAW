@@ -39,14 +39,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
+                <input asp-for="Username" class="form-control" readonly />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="Correo" class="control-label"></label>
                 <input asp-for="Correo" class="form-control" />
@@ -54,7 +50,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdRol" class="control-label"></label>
-                <input asp-for="IdRol" class="form-control" />
+                <input asp-for="IdRol" class="form-control" readonly />
                 <span asp-validation-for="IdRol" class="text-danger"></span>
             </div>
             <div class="form-group">

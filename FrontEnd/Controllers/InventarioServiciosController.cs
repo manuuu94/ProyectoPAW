@@ -19,6 +19,34 @@ namespace FrontEnd.Controllers
 
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCarrito(InventarioServiciosViewModel producto)
+        {
+            try
+            {
+
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.PostResponse("api/Carrito", producto);
+                response.EnsureSuccessStatusCode();
+                InventarioServiciosViewModel InventarioServiciosViewModel = response.Content.ReadAsAsync<InventarioServiciosViewModel>().Result;
+                return RedirectToAction("Index");
+            }
+            catch (HttpRequestException
+          )
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            catch (Exception
+            )
+            {
+
+                throw;
+            }
+        }
+
         private ServicioViewModel GetServicio(int id)
         {
             try

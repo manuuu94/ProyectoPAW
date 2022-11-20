@@ -11,5 +11,10 @@
 
         public ServicioViewModel Servicio { get; set; }
 
+       
+        public int? Id { get; set; }
+        public int? Cantidad { get; set; }
+
+
     }
 }

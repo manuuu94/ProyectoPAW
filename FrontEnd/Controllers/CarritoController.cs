@@ -25,7 +25,38 @@ namespace FrontEnd.Controllers
             }
         }
 
-        
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CarritoViewModel producto)
+        {
+            try
+            {
+
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.PostResponse("api/Carrito", producto);
+                response.EnsureSuccessStatusCode();
+                CarritoViewModel CarritoViewModel = response.Content.ReadAsAsync<CarritoViewModel>().Result;
+                return RedirectToAction("Index");
+            }
+            catch (HttpRequestException
+          )
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            catch (Exception
+            )
+            {
+
+                throw;
+            }
+        }
+
         public ActionResult VaciarCarrito()
         {
             try

@@ -62,7 +62,7 @@ namespace DAL.Implementations
                                     decimal TOTAL_COMPRA = 0;
                                     foreach (var dato in datos)
                                     {
-                                        TOTAL_COMPRA = TOTAL_COMPRA + dato.Total;
+                                        TOTAL_COMPRA = (decimal)(TOTAL_COMPRA + dato.Total);
                                     }
                                     RegistroCompra registro = new RegistroCompra();
                                     registro.CedulaCliente = registroCompra.CedulaCliente;
@@ -99,7 +99,7 @@ namespace DAL.Implementations
                                     decimal TOTAL_COMPRA = 0;
                                     foreach (var dato in datos)
                                     {
-                                        TOTAL_COMPRA = TOTAL_COMPRA + dato.Total;
+                                        TOTAL_COMPRA = (decimal)(TOTAL_COMPRA + dato.Total);
                                     }
 
                                     RegistroCompra registro = new RegistroCompra();

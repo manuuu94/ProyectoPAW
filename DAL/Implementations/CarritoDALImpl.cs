@@ -32,7 +32,7 @@ namespace DAL.Implementations
                 try
                 {
                     var datos = (from x in conexion.InventarioServicios
-                                 where x.IdProducto == entity.IdProducto
+                                 where x.IdProducto == entity.Id
                                  select x).FirstOrDefault();
                     if (datos.CantidadDisponible >= entity.Cantidad && datos != null &&
                         datos.CantidadDisponible != 0 && entity.Cantidad > 0)
