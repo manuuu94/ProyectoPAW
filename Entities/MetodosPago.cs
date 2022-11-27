@@ -11,7 +11,7 @@ namespace Entities
         }
 
         public int IdMetodo { get; set; }
-        public string Descripcion { get; set; } = null!;
+        public string Descripcion { get; set; }
 
         public virtual ICollection<RegistroCompra> RegistroCompras { get; set; }
     }
