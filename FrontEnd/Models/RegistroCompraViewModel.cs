@@ -11,7 +11,7 @@ namespace FrontEnd.Models
         public string? Telefono { get; set; }
         public DateTime? Fecha { get; set; }
         public decimal? TotalCompra { get; set; }
-        public int? IdMetodo { get; set; }
+        public int IdMetodo { get; set; }
         public int IdEmpleado { get; set; }
         public string? NombreEmpleado { get; set; }
         

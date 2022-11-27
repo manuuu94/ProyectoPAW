@@ -71,7 +71,20 @@ namespace DAL.Implementations
 
         public MetodosPago Get(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                MetodosPago metodospago;
+                using (UnidadDeTrabajo<MetodosPago> unidad = new UnidadDeTrabajo<MetodosPago>(context))
+                {
+                    //instancia el metodo de IDAL get a partir de unidaddetrabajo
+                    metodospago = unidad.genericDAL.Get(id);
+                }
+                return metodospago;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public IEnumerable<MetodosPago> GetAll()

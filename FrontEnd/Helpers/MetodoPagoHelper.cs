@@ -18,5 +18,16 @@ namespace FrontEnd.Helpers
 
         }
 
+        public MetodoPagoViewModel GetMetodo(int id)
+        {
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.GetResponse("api/MetodosPago/" + id.ToString());
+            response.EnsureSuccessStatusCode();
+            MetodoPagoViewModel metodoPagoViewModel = response.Content.ReadAsAsync<MetodoPagoViewModel>().Result;
+
+            return metodoPagoViewModel;
+
+        }
+
     }
 }

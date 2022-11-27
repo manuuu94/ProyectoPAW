@@ -27,6 +27,15 @@ namespace BackEnd.Controllers
             metodopago = metodopagoDAL.Get();
             return new JsonResult(metodopago);
         }
+
+        [HttpGet("{id}")]
+        public JsonResult Get(int id)
+        {
+            MetodosPago metodospago;
+            metodospago = metodopagoDAL.Get(id);
+            return new JsonResult(metodospago);
+        }
+
         #endregion
 
     }

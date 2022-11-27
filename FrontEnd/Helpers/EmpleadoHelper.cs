@@ -18,5 +18,15 @@ namespace FrontEnd.Helpers
 
         }
 
+        public EmpleadoViewModel GetEmpleado(int id)
+        {
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.GetResponse("api/Empleado/" + id.ToString());
+            response.EnsureSuccessStatusCode();
+            EmpleadoViewModel EmpleadoViewModel = response.Content.ReadAsAsync<EmpleadoViewModel>().Result;
+
+            return EmpleadoViewModel;
+
+        }
     }
 }

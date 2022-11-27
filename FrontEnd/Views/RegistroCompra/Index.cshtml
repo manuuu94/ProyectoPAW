@@ -38,9 +38,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.IdEmpleado)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreEmpleado)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -69,13 +66,10 @@
                 ₡ @Html.DisplayFor(modelItem => item.TotalCompra)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdMetodo)
+                @Html.DisplayFor(modelItem => item.MetodoPago.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdEmpleado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreEmpleado)
+                @Html.DisplayFor(modelItem => item.Empleado.Nombre)
             </td>
         </tr>
 }

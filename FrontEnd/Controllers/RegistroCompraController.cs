@@ -17,13 +17,28 @@ namespace FrontEnd.Controllers
 
         }
 
+        private EmpleadoViewModel GetEmpleado(int id)
+        {
+            EmpleadoHelper empleadohelper = new EmpleadoHelper();
+            EmpleadoViewModel empleado = empleadohelper.GetEmpleado(id);
+
+            return empleado;
+        }
+
         private List<MetodoPagoViewModel> GetMetodos()
         {
             MetodoPagoHelper metodoPagoHelper = new MetodoPagoHelper();
             List<MetodoPagoViewModel> metodospago = metodoPagoHelper.GetMetodos();
 
             return metodospago;
+        }
 
+        private MetodoPagoViewModel GetMetodo(int id)
+        {
+            MetodoPagoHelper metodoPagoHelper = new MetodoPagoHelper();
+            MetodoPagoViewModel metodopago = metodoPagoHelper.GetMetodo(id);
+
+            return metodopago;
         }
 
         public IActionResult Index()
@@ -36,7 +51,16 @@ namespace FrontEnd.Controllers
                 var content = responseMessage.Content.ReadAsStringAsync().Result;
                 List<RegistroCompraViewModel> registroCompras = JsonConvert.DeserializeObject<List<RegistroCompraViewModel>>(content); //lista
 
-                return View(registroCompras);
+                List<RegistroCompraViewModel>resultado = new List<RegistroCompraViewModel>();
+
+                foreach (RegistroCompraViewModel item in registroCompras)
+                {
+                    item.Empleado = this.GetEmpleado(item.IdEmpleado);
+                    item.MetodoPago = this.GetMetodo(item.IdMetodo);
+                    resultado.Add(item);    
+                }
+
+                return View(resultado);
             }
             catch (Exception)
             {
