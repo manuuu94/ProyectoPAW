@@ -34,8 +34,8 @@
                 <span asp-validation-for="Telefono" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdMetodo" class="control-label"></label>
-                <input asp-for="IdMetodo" class="form-control" />
+                <label asp-for="MetodosPago" class="control-label"></label>
+                @Html.DropDownListFor(model => model.IdMetodo, new SelectList(Model.MetodosPago, "IdMetodo", "Descripcion"), "--Seleccione--")
                 <span asp-validation-for="IdMetodo" class="text-danger"></span>
             </div>
             <div class="form-group">

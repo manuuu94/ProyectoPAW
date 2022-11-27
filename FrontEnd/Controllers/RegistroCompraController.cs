@@ -17,6 +17,15 @@ namespace FrontEnd.Controllers
 
         }
 
+        private List<MetodoPagoViewModel> GetMetodos()
+        {
+            MetodoPagoHelper metodoPagoHelper = new MetodoPagoHelper();
+            List<MetodoPagoViewModel> metodospago = metodoPagoHelper.GetMetodos();
+
+            return metodospago;
+
+        }
+
         public IActionResult Index()
         {
             try
@@ -54,6 +63,7 @@ namespace FrontEnd.Controllers
                 registroCompraViewModel.TotalCompraStr = total.ToString();
                 //registroCompraViewModel.TotalCompra = total;
                 registroCompraViewModel.Empleados = this.GetEmpleados();
+                registroCompraViewModel.MetodosPago = this.GetMetodos();
 
                 return View(registroCompraViewModel);
             }
