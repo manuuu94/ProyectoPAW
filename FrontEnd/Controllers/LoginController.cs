@@ -30,23 +30,24 @@ namespace FrontEnd.Controllers
                 List<LoginViewModel> login = JsonConvert.DeserializeObject<List<LoginViewModel>>(content); //lista
                 //ViewBag.Login = login.FirstOrDefault().Id_Empleado;
                 //ViewData["ROL"] = login.FirstOrDefault().Id_Empleado;
-                var ID = login.FirstOrDefault().Id_Empleado;
 
-                ServiceRepository serviceObj2 = new ServiceRepository();
-                HttpResponseMessage response2 = serviceObj2.GetResponse("api/Empleado/" + ID.ToString());
-                response2.EnsureSuccessStatusCode();
-                var content2 = response2.Content.ReadAsStringAsync().Result;
-                EmpleadoViewModel EmpleadoViewModel = response2.Content.ReadAsAsync<EmpleadoViewModel>().Result;
-                //List<EmpleadoViewModel> login2 = JsonConvert.DeserializeObject<List<EmpleadoViewModel>>(content2);
-                TempData["ROL"] = EmpleadoViewModel.IdRol;
-                TempData["NOMBRE"] = EmpleadoViewModel.Nombre;
-                TempData["APELLIDO"] = EmpleadoViewModel.Apellido1;
 
                 if (login.Count > 0)
                 {
                     //Session
                     HttpContext.Session.SetInt32("SessionUser", (int)login.FirstOrDefault().Id_Empleado);
 
+                    var ID = login.FirstOrDefault().Id_Empleado;
+
+                    ServiceRepository serviceObj2 = new ServiceRepository();
+                    HttpResponseMessage response2 = serviceObj2.GetResponse("api/Empleado/" + ID.ToString());
+                    response2.EnsureSuccessStatusCode();
+                    var content2 = response2.Content.ReadAsStringAsync().Result;
+                    EmpleadoViewModel EmpleadoViewModel = response2.Content.ReadAsAsync<EmpleadoViewModel>().Result;
+                    //List<EmpleadoViewModel> login2 = JsonConvert.DeserializeObject<List<EmpleadoViewModel>>(content2);
+                    TempData["ROL"] = EmpleadoViewModel.IdRol;
+                    TempData["NOMBRE"] = EmpleadoViewModel.Nombre;
+                    TempData["APELLIDO"] = EmpleadoViewModel.Apellido1;
 
                     return RedirectToAction("Index","Home");
                 }
