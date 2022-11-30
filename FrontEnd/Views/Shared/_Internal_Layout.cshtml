@@ -1,4 +1,9 @@
-﻿
+﻿@{
+    TempData.Keep("ROL");
+    TempData.Keep("NOMBRE");
+    TempData.Keep("APELLIDO");
+}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,147 +21,255 @@
   <body>
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
-                
+                    @if (@TempData["ROL"].ToString() == "1")
+            {
                 <div class="p-4 pt-5,sidebar-header">
-                        <div class="user-pic">
-                        <img class="p-4 pt-5,img logo rounded-circle mb-1" src="https://d29fhpw069ctt2.cloudfront.net/icon/image/37746/preview.svg"
+                    <div class="user-pic">
+                        <img class="p-4 pt-5,img logo rounded-circle:middle mb-1" src="https://d29fhpw069ctt2.cloudfront.net/icon/image/37746/preview.svg"
                         alt="User picture">
-                        
+
+
+
                         <div class="user-info">
                             <span class="user-name">
-@*                                @Session["NombreUsuario"]
-*@                                <strong>@*@Session["ApellidoUsuario"]*@</strong>
+                                <strong>@TempData["NOMBRE"]</strong>
                             </span>
+                            <span class ="user-name">
+                                <strong>@TempData["APELLIDO"]</strong>
+                            </span>
+                        </div>
+                        <div>
                             <span class="user-role" style="text-anchor:end">Administrador</span>
+                        </div>
+                        <div>
                             <span class="user-status">
-                                <i class="fa fa-circle"></i>
+                                <i class="fa fa-circle" style="color:green"></i>
                                 <span>Conectado</span>
                             </span>
                         </div>
-                        </div>
+
+                    </div>
                 </div>
 
-
-				<div class="p-4 pt-5,sidebar-menu">
-@*		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.jpg);" src="https://d29fhpw069ctt2.cloudfront.net/icon/image/37746/preview.svg"></a>
+                <div class="p-4 pt-5,sidebar-menu">
+                    @*		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.jpg);" src="https://d29fhpw069ctt2.cloudfront.net/icon/image/37746/preview.svg"></a>
 *@
-	        <ul class="list-unstyled components mb-5">
-	          <li class="active">
-	            <a href="#invSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inventario</a>
-	            <ul class="collapse list-unstyled" id="invSubmenu">
-                <li>
-                    <a href="@Url.Action("Index", "InventarioServicios")">Ver Inventario</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Create", "InventarioServicios")">Añadir productos</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index", "RegistroInventario")">Registros de Inventario</a>
-                </li>
-	            </ul>
-	          </li>
+                    <ul class="list-unstyled components mb-5">
+                        <li class="active">
+                            <a href="#invSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inventario</a>
+                            <ul class="collapse list-unstyled" id="invSubmenu">
+                                <li>
+                                    <a href="@Url.Action("Index", "InventarioServicios")">Ver Inventario</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Create", "InventarioServicios")">Añadir productos</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "RegistroInventario")">Registros de Inventario</a>
+                                </li>
+                            </ul>
+                        </li>
 
-	          <li class="active">
-	            <a href="#carroSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Carrito</a>
-	            <ul class="collapse list-unstyled" id="carroSubmenu">
-                <li>
-                    <a href="@Url.Action("Index", "Carrito")">Ver Carrito</a>
-                </li>
+                        <li class="active">
+                            <a href="#carroSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Carrito</a>
+                            <ul class="collapse list-unstyled" id="carroSubmenu">
+                                <li>
+                                    <a href="@Url.Action("Index", "Carrito")">Ver Carrito</a>
+                                </li>
 
-         
-                <li>
-                    <a href="@Url.Action("Index", "RegistroCompra")">Registro Compras</a>
-                </li>
-@*                <li>
+
+                                <li>
+                                    <a href="@Url.Action("Index", "RegistroCompra")">Registro Compras</a>
+                                </li>
+                                @*                <li>
                     <a href="@Url.Action("Index", "RegistrosInventario")">Registros de Inventario</a>
                 </li>*@
-	            </ul>
-	          </li>
+                            </ul>
+                        </li>
 
-	          <li class="active">
-              <a href="#clientesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clientes</a>
-              <ul class="collapse list-unstyled" id="clientesSubmenu">
-                <li>
-                    <a href="@Url.Action("Index", "ClientesAtendido")">Ver Clientes Atendidos</a>
-                </li>
-@*                <li>
+                        <li class="active">
+                            <a href="#clientesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clientes</a>
+                            <ul class="collapse list-unstyled" id="clientesSubmenu">
+                                <li>
+                                    <a href="@Url.Action("Index", "ClientesAtendido")">Ver Clientes Atendidos</a>
+                                </li>
+                                @*                <li>
                     <a href="#">Page 2</a>
                 </li>
                 <li>
                     <a href="#">Page 3</a>
                 </li>*@
-              </ul>
-	          </li>
+                            </ul>
+                        </li>
 
-              <li class="active">
-              <a href="#emplSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Empleados</a>
-              <ul class="collapse list-unstyled" id="emplSubmenu">
-                <li>
-                    <a href="@Url.Action("Index", "Empleado")">Ver Empleados</a>
-                </li>
-               
-                <li>
-                    <a href="@Url.Action("Create", "EmpleadoNuevo")">Registrar nuevo empleado</a>
-                </li>
-@*                <li>
+                        <li class="active">
+                            <a href="#emplSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Empleados</a>
+                            <ul class="collapse list-unstyled" id="emplSubmenu">
+                                <li>
+                                    <a href="@Url.Action("Index", "Empleado")">Ver Empleados</a>
+                                </li>
+
+                                <li>
+                                    <a href="@Url.Action("Create", "EmpleadoNuevo")">Registrar nuevo empleado</a>
+                                </li>
+                                @*                <li>
                     <a href="#">Page 3</a>
                 </li>*@
-              </ul>
-	          </li>
+                            </ul>
+                        </li>
 
 
-              <li class="active">
-              <a href="#configSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Configuración</a>
-              <ul class="collapse list-unstyled" id="configSubmenu">
-                <li>
-                    <a href="@Url.Action("Details", "Empleado")">Ver su Perfil</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("changePass", "Login")">Cambiar contraseña</a>
-                </li>
-@*                <li>
+                        <li class="active">
+                            <a href="#configSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Configuración</a>
+                            <ul class="collapse list-unstyled" id="configSubmenu">
+                                <li>
+                                    <a href="@Url.Action("Details", "Empleado")">Ver su Perfil</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("changePass", "Login")">Cambiar contraseña</a>
+                                </li>
+                                @*                <li>
                     <a href="#">Page 3</a>
                 </li>*@
-              </ul>
-	          </li>
+                            </ul>
+                        </li>
 
-	          <li class="active">
-              <a href="#">Contact</a>
-	          </li>
+                        <li class="active">
+                            <a href="#">Contact</a>
+                        </li>
 
-	        </ul>
+                    </ul>
+                </div>
+            }
+            else if (@TempData["ROL"].ToString() == "2")
+                    {
+                <div class="p-4 pt-5,sidebar-header">
+                    <div class="user-pic">
+                        <img class="p-4 pt-5,img logo rounded-circle:middle mb-1" src="https://d29fhpw069ctt2.cloudfront.net/icon/image/37746/preview.svg"
+                         alt="User picture">
 
-	        <div class="footer">
+                        <div class="user-info">
+                            <span class="user-name">
+                                <strong>@TempData["NOMBRE"]</strong>
+                            </span>
+                            <span class="user-name">
+                                <strong>@TempData["APELLIDO"]</strong>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="user-role" style="text-anchor:end">Empleado Regular</span>
+                        </div>
+                        <div>
+                            <span class="user-status">
+                                <i class="fa fa-circle" style="color:green"></i>
+                                <span>Conectado</span>
+                            </span>
+                        </div>
 
-                              <a href="#locSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Extras</a>
-              <ul class="collapse list-unstyled" id="locSubmenu">
-                <li>
-                    <a href="@Url.Action("Ubicacion", "Home")">Ubicación</a>
-                </li>
-@*                <li>
+                    </div>
+                </div>
+
+                <div class="p-4 pt-5,sidebar-menu">
+                    @*		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.jpg);" src="https://d29fhpw069ctt2.cloudfront.net/icon/image/37746/preview.svg"></a>
+                *@
+                    <ul class="list-unstyled components mb-5">
+                        <li class="active">
+                            <a href="#invSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inventario</a>
+                            <ul class="collapse list-unstyled" id="invSubmenu">
+                                <li>
+                                    <a href="@Url.Action("Index", "InventarioServicios")">Ver Inventario</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "RegistroInventario")">Registros de Inventario</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="active">
+                            <a href="#carroSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Carrito</a>
+                            <ul class="collapse list-unstyled" id="carroSubmenu">
+                                <li>
+                                    <a href="@Url.Action("Index", "Carrito")">Ver Carrito</a>
+                                </li>
+
+
+                                <li>
+                                    <a href="@Url.Action("Index", "RegistroCompra")">Registro Compras</a>
+                                </li>
+                                @*                <li>
+                            <a href="@Url.Action("Index", "RegistrosInventario")">Registros de Inventario</a>
+                            </li>*@
+                            </ul>
+                        </li>
+
+                        <li class="active">
+                            <a href="#clientesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clientes</a>
+                            <ul class="collapse list-unstyled" id="clientesSubmenu">
+                                <li>
+                                    <a href="@Url.Action("Index", "ClientesAtendido")">Ver Clientes Atendidos</a>
+                                </li>
+                                @*                <li>
+                            <a href="#">Page 2</a>
+                            </li>
+                            <li>
+                            <a href="#">Page 3</a>
+                            </li>*@
+                            </ul>
+                        </li>
+
+                        <li class="active">
+                            <a href="#configSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Configuración</a>
+                            <ul class="collapse list-unstyled" id="configSubmenu">
+                                <li>
+                                    <a href="@Url.Action("Details", "Empleado")">Ver su Perfil</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("changePass", "Login")">Cambiar contraseña</a>
+                                </li>
+                                @*                <li>
+                            <a href="#">Page 3</a>
+                            </li>*@
+                            </ul>
+                        </li>
+
+                        <li class="active">
+                            <a href="#">Contact</a>
+                        </li>
+
+                    </ul>
+                </div>
+            }
+            <div class="footer" style="text-align:center">
+
+                        <a href="#locSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Extras</a>
+                        <ul class="collapse list-unstyled" id="locSubmenu">
+                            <li>
+                                <a href="@Url.Action("Ubicacion", "Home")">Ubicación</a>
+                            </li>
+                            @*                <li>
                     <a href="@Url.Action("Create", "EmpleadoNuevo")">Ver Clientes Atendidos</a>
                 </li>*@
-@*                <li>
+                            @*                <li>
                     <a href="#">Page 3</a>
                 </li>*@
-              </ul>
-	          </li>
+                        </ul>
+                        </li>
 
-	        	<p>@*<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                <p>@*<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
 						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->*@</p>
-	            <div class="sidebar-footer" style="text-align:center">
-                <a href="@Url.Action("LogOut", "Login")">
-                    <i class="fa fa-power-off"></i>
-                </a>
+                <div class="sidebar-footer" style="text-align:center">
+                    <a href="@Url.Action("LogOut", "Login")">
+                        <i class="fa fa-power-off"></i>
+                    </a>
 
 
-            </div>
-                      
-           </div>
+                </div>
 
-	      </div>
-    	</nav>
+            
+    </div>
+                        </nav>
+                    
 
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5">
