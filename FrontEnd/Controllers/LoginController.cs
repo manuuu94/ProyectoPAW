@@ -30,8 +30,6 @@ namespace FrontEnd.Controllers
                 List<LoginViewModel> login = JsonConvert.DeserializeObject<List<LoginViewModel>>(content); //lista
                 //ViewBag.Login = login.FirstOrDefault().Id_Empleado;
                 //ViewData["ROL"] = login.FirstOrDefault().Id_Empleado;
-
-
                 if (login.Count > 0)
                 {
                     //Session
@@ -61,7 +59,6 @@ namespace FrontEnd.Controllers
             catch (Exception
             )
             {
-
                 throw;
             }
         }

@@ -1,4 +1,5 @@
 ﻿using FrontEnd.Models;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FrontEnd.Helpers
 {
@@ -12,4 +13,19 @@ namespace FrontEnd.Helpers
             response.EnsureSuccessStatusCode();
         }
     }
+
+    //public class SessionTimeoutAttribute : ActionFilterAttribute
+    //{
+    //    public override void OnActionExecuting(ActionExecutingContext filterContext)
+    //    {
+    //        HttpContext ctx = HttpContext.Curent;
+    //        if (HttpContext.Current.Session["ID"] == null)
+    //        {
+    //            filterContext.Result = new RedirectResult("~/Home/Login");
+    //            return;
+    //        }
+    //        base.OnActionExecuting(filterContext);
+    //    }
+    //}
 }
+

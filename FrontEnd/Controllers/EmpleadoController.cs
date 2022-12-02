@@ -118,7 +118,9 @@ namespace FrontEnd.Controllers
         {
             try
             {
-                int sessionUser = (int)HttpContext.Session.GetInt32("SessionUser"));
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    int sessionUser = (int)HttpContext.Session.GetInt32("SessionUser");
 
                     ServiceRepository serviceObj = new ServiceRepository();
                     HttpResponseMessage response = serviceObj.GetResponse("api/empleado/" + sessionUser.ToString());
@@ -126,9 +128,11 @@ namespace FrontEnd.Controllers
                     Models.EmpleadoViewModel EmpleadoViewModel = response.Content.ReadAsAsync<Models.EmpleadoViewModel>().Result;
                     //ViewBag.Title = "All Empleados";
                     return View(EmpleadoViewModel);
-                
+                }
+                return RedirectToAction("Index", "Login");
 
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return RedirectToAction("Index", "Login");
             }
