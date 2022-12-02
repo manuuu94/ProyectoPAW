@@ -147,7 +147,7 @@ namespace FrontEnd.Controllers
         public ActionResult LogOut()
         {
             //modelocarrito.VaciarCarrito();
-            //HttpContext.Session.Clear();
+            HttpContext.Session.Clear();
 
 
             return RedirectToAction("Index", "Login");
