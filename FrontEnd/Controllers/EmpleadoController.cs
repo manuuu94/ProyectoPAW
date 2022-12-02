@@ -112,19 +112,28 @@ namespace FrontEnd.Controllers
                 }
             }
 
-            
 
-            public ActionResult Details()
+
+        public ActionResult Details()
+        {
+            try
             {
-            int sessionUser = (int)HttpContext.Session.GetInt32("SessionUser");
+                int sessionUser = (int)HttpContext.Session.GetInt32("SessionUser"));
 
-            ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.GetResponse("api/empleado/" + sessionUser.ToString());
-                response.EnsureSuccessStatusCode();
-                Models.EmpleadoViewModel EmpleadoViewModel = response.Content.ReadAsAsync<Models.EmpleadoViewModel>().Result;
-               //ViewBag.Title = "All Empleados";
-               return View(EmpleadoViewModel);
+                    ServiceRepository serviceObj = new ServiceRepository();
+                    HttpResponseMessage response = serviceObj.GetResponse("api/empleado/" + sessionUser.ToString());
+                    response.EnsureSuccessStatusCode();
+                    Models.EmpleadoViewModel EmpleadoViewModel = response.Content.ReadAsAsync<Models.EmpleadoViewModel>().Result;
+                    //ViewBag.Title = "All Empleados";
+                    return View(EmpleadoViewModel);
+                
+
+            }catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Login");
             }
+
+        }
 
 
 
