@@ -15,18 +15,53 @@ namespace FrontEnd.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Login");
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
 
         public IActionResult Privacy()
         {
-            return View();
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Login");
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
+
 
         public IActionResult Ubicacion()
         {
-            return View();
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Login");
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -44,28 +44,32 @@ namespace FrontEnd.Controllers
         {
             try
             {
-                ServiceRepository Repository = new ServiceRepository();
-                HttpResponseMessage responseMessage = Repository.GetResponse("api/RegistrosInventario");
-                responseMessage.EnsureSuccessStatusCode();
-                var content = responseMessage.Content.ReadAsStringAsync().Result;
-                List<RegistroInventarioViewModel> inventario = JsonConvert.DeserializeObject<List<RegistroInventarioViewModel>>(content); //lista
-
-                List<RegistroInventarioViewModel> resultado = new List<RegistroInventarioViewModel>();
-
-                foreach (RegistroInventarioViewModel item in inventario)
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
                 {
+                    ServiceRepository Repository = new ServiceRepository();
+                    HttpResponseMessage responseMessage = Repository.GetResponse("api/RegistrosInventario");
+                    responseMessage.EnsureSuccessStatusCode();
+                    var content = responseMessage.Content.ReadAsStringAsync().Result;
+                    List<RegistroInventarioViewModel> inventario = JsonConvert.DeserializeObject<List<RegistroInventarioViewModel>>(content); //lista
 
-                    item.Servicio = this.GetServicio(item.IdServicio);
-                    resultado.Add(item);
+                    List<RegistroInventarioViewModel> resultado = new List<RegistroInventarioViewModel>();
+
+                    foreach (RegistroInventarioViewModel item in inventario)
+                    {
+
+                        item.Servicio = this.GetServicio(item.IdServicio);
+                        resultado.Add(item);
+                    }
+
+
+                    return View(inventario);
                 }
-
-
-                return View(inventario);
+                return RedirectToAction("Index", "Login");
 
             }
             catch (Exception)
             {
-                throw;
+                return RedirectToAction("Index", "Login");
             }
         }
     }

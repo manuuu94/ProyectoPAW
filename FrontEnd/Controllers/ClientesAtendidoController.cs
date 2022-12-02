@@ -11,17 +11,22 @@ namespace FrontEnd.Controllers
         {
             try
             {
-                ServiceRepository Repository = new ServiceRepository();
-                HttpResponseMessage responseMessage = Repository.GetResponse("api/ClientesAtendidos");
-                responseMessage.EnsureSuccessStatusCode();
-                var content = responseMessage.Content.ReadAsStringAsync().Result;
-                List<ClientesAtendidoViewModel> clientesatendidos = JsonConvert.DeserializeObject<List<ClientesAtendidoViewModel>>(content); //lista
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    ServiceRepository Repository = new ServiceRepository();
+                    HttpResponseMessage responseMessage = Repository.GetResponse("api/ClientesAtendidos");
+                    responseMessage.EnsureSuccessStatusCode();
+                    var content = responseMessage.Content.ReadAsStringAsync().Result;
+                    List<ClientesAtendidoViewModel> clientesatendidos = JsonConvert.DeserializeObject<List<ClientesAtendidoViewModel>>(content); //lista
 
-                return View(clientesatendidos);
+                    return View(clientesatendidos);
+                }
+                return RedirectToAction("Index", "Login");
+
             }
             catch (Exception)
             {
-                throw;
+                return RedirectToAction("Index", "Login");
             }
         }
     }

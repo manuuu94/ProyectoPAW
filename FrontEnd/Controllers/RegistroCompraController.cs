@@ -45,26 +45,32 @@ namespace FrontEnd.Controllers
         {
             try
             {
-                ServiceRepository Repository = new ServiceRepository();
-                HttpResponseMessage responseMessage = Repository.GetResponse("api/RegistrosCompra");
-                responseMessage.EnsureSuccessStatusCode();
-                var content = responseMessage.Content.ReadAsStringAsync().Result;
-                List<RegistroCompraViewModel> registroCompras = JsonConvert.DeserializeObject<List<RegistroCompraViewModel>>(content); //lista
-
-                List<RegistroCompraViewModel>resultado = new List<RegistroCompraViewModel>();
-
-                foreach (RegistroCompraViewModel item in registroCompras)
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
                 {
-                    item.Empleado = this.GetEmpleado(item.IdEmpleado);
-                    item.MetodoPago = this.GetMetodo(item.IdMetodo);
-                    resultado.Add(item);    
-                }
 
-                return View(resultado);
+                    ServiceRepository Repository = new ServiceRepository();
+                    HttpResponseMessage responseMessage = Repository.GetResponse("api/RegistrosCompra");
+                    responseMessage.EnsureSuccessStatusCode();
+                    var content = responseMessage.Content.ReadAsStringAsync().Result;
+                    List<RegistroCompraViewModel> registroCompras = JsonConvert.DeserializeObject<List<RegistroCompraViewModel>>(content); //lista
+
+                    List<RegistroCompraViewModel> resultado = new List<RegistroCompraViewModel>();
+
+                    foreach (RegistroCompraViewModel item in registroCompras)
+                    {
+                        item.Empleado = this.GetEmpleado(item.IdEmpleado);
+                        item.MetodoPago = this.GetMetodo(item.IdMetodo);
+                        resultado.Add(item);
+                    }
+
+                    return View(resultado);
+                }
+                return RedirectToAction("Index", "Login");
+
             }
             catch (Exception)
             {
-                throw;
+                return RedirectToAction("Index", "Login");
             }
         }
 
@@ -73,27 +79,32 @@ namespace FrontEnd.Controllers
         {
             try
             {
-                ServiceRepository Repository = new ServiceRepository();
-                HttpResponseMessage responseMessage = Repository.GetResponse("api/Carrito");
-                responseMessage.EnsureSuccessStatusCode();
-                var content = responseMessage.Content.ReadAsStringAsync().Result;
-                List<CarritoViewModel> carrito = JsonConvert.DeserializeObject<List<CarritoViewModel>>(content); //lista
-                decimal total = 0;
-                foreach (var item in carrito)
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
                 {
-                    total = total + item.Total;
-                }
-                RegistroCompraViewModel registroCompraViewModel = new RegistroCompraViewModel();
-                registroCompraViewModel.TotalCompraStr = total.ToString();
-                //registroCompraViewModel.TotalCompra = total;
-                registroCompraViewModel.Empleados = this.GetEmpleados();
-                registroCompraViewModel.MetodosPago = this.GetMetodos();
+                    ServiceRepository Repository = new ServiceRepository();
+                    HttpResponseMessage responseMessage = Repository.GetResponse("api/Carrito");
+                    responseMessage.EnsureSuccessStatusCode();
+                    var content = responseMessage.Content.ReadAsStringAsync().Result;
+                    List<CarritoViewModel> carrito = JsonConvert.DeserializeObject<List<CarritoViewModel>>(content); //lista
+                    decimal total = 0;
+                    foreach (var item in carrito)
+                    {
+                        total = total + item.Total;
+                    }
+                    RegistroCompraViewModel registroCompraViewModel = new RegistroCompraViewModel();
+                    registroCompraViewModel.TotalCompraStr = total.ToString();
+                    //registroCompraViewModel.TotalCompra = total;
+                    registroCompraViewModel.Empleados = this.GetEmpleados();
+                    registroCompraViewModel.MetodosPago = this.GetMetodos();
 
-                return View(registroCompraViewModel);
+                    return View(registroCompraViewModel);
+                }
+                return RedirectToAction("Index", "Login");
+
             }
             catch (Exception)
             {
-                return View("Error");
+                return RedirectToAction("Index", "Login");
             }
         }
 

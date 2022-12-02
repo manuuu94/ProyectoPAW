@@ -72,35 +72,52 @@ namespace FrontEnd.Controllers
         {
             try
             {
-                ServiceRepository Repository = new ServiceRepository();
-                HttpResponseMessage responseMessage = Repository.GetResponse("api/InventarioServicios");
-                responseMessage.EnsureSuccessStatusCode();
-                var content = responseMessage.Content.ReadAsStringAsync().Result;
-                List<InventarioServiciosViewModel> inventario = JsonConvert.DeserializeObject<List<InventarioServiciosViewModel>>(content); //lista
-
-                List<InventarioServiciosViewModel> resultado = new List<InventarioServiciosViewModel>();
-
-                foreach (InventarioServiciosViewModel item in inventario)
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
                 {
+                    ServiceRepository Repository = new ServiceRepository();
+                    HttpResponseMessage responseMessage = Repository.GetResponse("api/InventarioServicios");
+                    responseMessage.EnsureSuccessStatusCode();
+                    var content = responseMessage.Content.ReadAsStringAsync().Result;
+                    List<InventarioServiciosViewModel> inventario = JsonConvert.DeserializeObject<List<InventarioServiciosViewModel>>(content); //lista
 
-                    item.Servicio = this.GetServicio(item.IdServicio);
-                    resultado.Add(item);
+                    List<InventarioServiciosViewModel> resultado = new List<InventarioServiciosViewModel>();
+
+                    foreach (InventarioServiciosViewModel item in inventario)
+                    {
+
+                        item.Servicio = this.GetServicio(item.IdServicio);
+                        resultado.Add(item);
+                    }
+
+
+                    return View(inventario);
                 }
+                return RedirectToAction("Index", "Login");
 
-
-                return View(inventario);
-              
             }
             catch (Exception)
             {
-                throw;
+                return RedirectToAction("Index", "Login");
             }
         }
 
         public ActionResult Create()
         {
-            return View();
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Login");
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
+
 
 
         [HttpPost]
@@ -132,12 +149,24 @@ namespace FrontEnd.Controllers
 
         public ActionResult Edit(int id)
         {
-            ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.GetResponse("api/InventarioServicios/" + id.ToString());
-            response.EnsureSuccessStatusCode();
-            InventarioServiciosViewModel InventarioServiciosViewModel = response.Content.ReadAsAsync<InventarioServiciosViewModel>().Result;
-     
-            return View(InventarioServiciosViewModel);
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    ServiceRepository serviceObj = new ServiceRepository();
+                    HttpResponseMessage response = serviceObj.GetResponse("api/InventarioServicios/" + id.ToString());
+                    response.EnsureSuccessStatusCode();
+                    InventarioServiciosViewModel InventarioServiciosViewModel = response.Content.ReadAsAsync<InventarioServiciosViewModel>().Result;
+
+                    return View(InventarioServiciosViewModel);
+                }
+                return RedirectToAction("Index", "Login");
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
 
         // POST: InventarioServiciosController/Edit/5
@@ -155,14 +184,24 @@ namespace FrontEnd.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    ServiceRepository serviceObj = new ServiceRepository();
+                    HttpResponseMessage response = serviceObj.GetResponse("api/InventarioServicios/" + id.ToString());
+                    response.EnsureSuccessStatusCode();
+                    InventarioServiciosViewModel InventarioServiciosViewModel = response.Content.ReadAsAsync<InventarioServiciosViewModel>().Result;
+                    //ViewBag.Title = "All Products";
+                    return View(InventarioServiciosViewModel);
+                }
+                return RedirectToAction("Index", "Login");
 
-
-            ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.GetResponse("api/InventarioServicios/" + id.ToString());
-            response.EnsureSuccessStatusCode();
-            InventarioServiciosViewModel InventarioServiciosViewModel = response.Content.ReadAsAsync<InventarioServiciosViewModel>().Result;
-            //ViewBag.Title = "All Products";
-            return View(InventarioServiciosViewModel);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
 
 
@@ -186,18 +225,26 @@ namespace FrontEnd.Controllers
 
         public ActionResult Details(int id)
         {
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    ServiceRepository serviceObj = new ServiceRepository();
+                    HttpResponseMessage response = serviceObj.GetResponse("api/inventarioServicios/" + id.ToString());
+                    response.EnsureSuccessStatusCode();
+                    Models.InventarioServiciosViewModel InventarioServiciosViewModel = response.Content.ReadAsAsync<Models.InventarioServiciosViewModel>().Result;
+                    //ViewBag.Title = "All Products";
+                    return View(InventarioServiciosViewModel);
+                }
+                return RedirectToAction("Index", "Login");
 
-
-            ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.GetResponse("api/inventarioServicios/" + id.ToString());
-            response.EnsureSuccessStatusCode();
-            Models.InventarioServiciosViewModel InventarioServiciosViewModel = response.Content.ReadAsAsync<Models.InventarioServiciosViewModel>().Result;
-            //ViewBag.Title = "All Products";
-            return View(InventarioServiciosViewModel);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
 
 
     }
-
-
 }

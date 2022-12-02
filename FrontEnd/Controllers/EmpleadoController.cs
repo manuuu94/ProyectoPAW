@@ -11,6 +11,8 @@ namespace FrontEnd.Controllers
             {
                 try
                 {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
                     ServiceRepository Repository = new ServiceRepository();
                     HttpResponseMessage responseMessage = Repository.GetResponse("api/Empleado");
                     responseMessage.EnsureSuccessStatusCode();
@@ -19,16 +21,32 @@ namespace FrontEnd.Controllers
 
                     return View(empleado);
                 }
-                catch (Exception)
-                {
-                    throw;
-                }
+                return RedirectToAction("Index", "Login");
+
             }
+            catch (Exception)
+                {
+                return RedirectToAction("Index", "Login");
+            }
+        }
 
             public ActionResult Create()
             {
-                return View();
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+
+                    return View();
+                }
+                return RedirectToAction("Index", "Login");
             }
+            catch
+            {
+                return RedirectToAction("Index", "Login");
+
+            }
+        }
 
 
             [HttpPost]
@@ -59,14 +77,26 @@ namespace FrontEnd.Controllers
             }
 
             public ActionResult Edit(int id)
+        {
+            try
             {
-                ServiceRepository serviceObj = new ServiceRepository();
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    ServiceRepository serviceObj = new ServiceRepository();
                 HttpResponseMessage response = serviceObj.GetResponse("api/Empleado/" + id.ToString());
                 response.EnsureSuccessStatusCode();
                 EmpleadoViewModel EmpleadoViewModel = response.Content.ReadAsAsync<EmpleadoViewModel>().Result;
 
                 return View(EmpleadoViewModel);
+                }
+                return RedirectToAction("Index", "Login");
             }
+            catch
+            {
+                return RedirectToAction("Index", "Login");
+
+            }
+        }
 
         // POST: EmpleadoController/Edit/5
         [HttpPost]
@@ -83,18 +113,28 @@ namespace FrontEnd.Controllers
             [HttpGet]
             public ActionResult Delete(int id)
             {
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    ServiceRepository serviceObj = new ServiceRepository();
+                    HttpResponseMessage response = serviceObj.GetResponse("api/empleado/" + id.ToString());
+                    response.EnsureSuccessStatusCode();
+                    EmpleadoViewModel EmpleadoViewModel = response.Content.ReadAsAsync<EmpleadoViewModel>().Result;
+                    //ViewBag.Title = "All Empleados";
+                    return View(EmpleadoViewModel);
+                }
+                    return RedirectToAction("Index", "Login");
+                }
+            catch
+            {
+                return RedirectToAction("Index", "Login");
 
-
-                ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.GetResponse("api/empleado/" + id.ToString());
-                response.EnsureSuccessStatusCode();
-                EmpleadoViewModel EmpleadoViewModel = response.Content.ReadAsAsync<EmpleadoViewModel>().Result;
-               //ViewBag.Title = "All Empleados";
-               return View(EmpleadoViewModel);
             }
+        }
 
 
-            [HttpPost]
+        [HttpPost]
             public ActionResult Delete(EmpleadoViewModel empleados)
             {
                 ServiceRepository serviceObj = new ServiceRepository();
@@ -139,9 +179,7 @@ namespace FrontEnd.Controllers
 
         }
 
-
-
     }
 
-    }
+}
 

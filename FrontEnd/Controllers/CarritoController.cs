@@ -11,19 +11,24 @@ namespace FrontEnd.Controllers
         {
             try
             {
-                ServiceRepository Repository = new ServiceRepository();
-                HttpResponseMessage responseMessage = Repository.GetResponse("api/Carrito");
-                responseMessage.EnsureSuccessStatusCode();
-                var content = responseMessage.Content.ReadAsStringAsync().Result;
-                List<CarritoViewModel> carrito = JsonConvert.DeserializeObject<List<CarritoViewModel>>(content); //lista
+                        if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                        {
+                            ServiceRepository Repository = new ServiceRepository();
+                            HttpResponseMessage responseMessage = Repository.GetResponse("api/Carrito");
+                            responseMessage.EnsureSuccessStatusCode();
+                            var content = responseMessage.Content.ReadAsStringAsync().Result;
+                            List<CarritoViewModel> carrito = JsonConvert.DeserializeObject<List<CarritoViewModel>>(content); //lista
 
-                return View(carrito);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+                            return View(carrito);
+                        }
+                        return RedirectToAction("Index", "Login");
+                    }
+                    catch (Exception)
+                    {
+                        return RedirectToAction("Index", "Login");
+                    }
         }
+
 
         public ActionResult Create()
         {
@@ -49,8 +54,7 @@ namespace FrontEnd.Controllers
                 return RedirectToAction("Error", "Home");
             }
 
-            catch (Exception
-            )
+            catch (Exception)
             {
 
                 throw;

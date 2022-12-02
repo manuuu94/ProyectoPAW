@@ -66,7 +66,11 @@ namespace FrontEnd.Controllers
         [HttpGet]
         public ActionResult changePass(LoginViewModel user)
         {
-            int sessionUser = (int)HttpContext.Session.GetInt32("SessionUser");
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    int sessionUser = (int)HttpContext.Session.GetInt32("SessionUser");
             //ViewBag.user = sessionUser;
             ServiceRepository serviceObj = new ServiceRepository();
             HttpResponseMessage response = serviceObj.GetResponse("api/empleado/" + sessionUser.ToString());
@@ -76,7 +80,16 @@ namespace FrontEnd.Controllers
             user.Username = EmpleadoViewModel.Username;
             user.Password = null;
             return View(user);
+                }
+                return RedirectToAction("Index", "Login");
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

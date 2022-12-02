@@ -13,22 +13,39 @@ namespace FrontEnd.Controllers
         {
             try
             {
-                ServiceRepository Repository = new ServiceRepository();
-                HttpResponseMessage responseMessage = Repository.GetResponse("api/Empleado");
-                responseMessage.EnsureSuccessStatusCode();
-                var content = responseMessage.Content.ReadAsStringAsync().Result;
-                List<EmpleadoNuevoViewModel> empleado = JsonConvert.DeserializeObject<List<EmpleadoNuevoViewModel>>(content); //lista
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    ServiceRepository Repository = new ServiceRepository();
+                    HttpResponseMessage responseMessage = Repository.GetResponse("api/Empleado");
+                    responseMessage.EnsureSuccessStatusCode();
+                    var content = responseMessage.Content.ReadAsStringAsync().Result;
+                    List<EmpleadoNuevoViewModel> empleado = JsonConvert.DeserializeObject<List<EmpleadoNuevoViewModel>>(content); //lista
 
-                return View(empleado);
+                    return View(empleado);
+                }
+                return RedirectToAction("Index", "Login");
+
             }
             catch (Exception)
             {
-                throw;
+                return RedirectToAction("Index", "Login");
             }
         }
         public ActionResult Create()
         {
-            return View();
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    return View();
+                }
+                return RedirectToAction("Index", "Login");
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
 
 
@@ -63,13 +80,27 @@ namespace FrontEnd.Controllers
 
         public ActionResult Edit(int id)
         {
-            ServiceRepository serviceObj = new ServiceRepository();
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    ServiceRepository serviceObj = new ServiceRepository();
             HttpResponseMessage response = serviceObj.GetResponse("api/Empleado/" + id.ToString());
             response.EnsureSuccessStatusCode();
             EmpleadoNuevoViewModel EmpleadoNuevoViewModel = response.Content.ReadAsAsync<EmpleadoNuevoViewModel>().Result;
 
             return View(EmpleadoNuevoViewModel);
+            
+            }
+            return RedirectToAction("Index", "Login");
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
+
 
         // POST: EmpleadoController/Edit/5
         [HttpPost]
@@ -86,14 +117,26 @@ namespace FrontEnd.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
 
 
-            ServiceRepository serviceObj = new ServiceRepository();
+                    ServiceRepository serviceObj = new ServiceRepository();
             HttpResponseMessage response = serviceObj.GetResponse("api/Empleado/" + id.ToString());
             response.EnsureSuccessStatusCode();
             EmpleadoNuevoViewModel EmpleadoNuevoViewModel = response.Content.ReadAsAsync<EmpleadoNuevoViewModel>().Result;
             //ViewBag.Title = "All Empleados";
             return View(EmpleadoNuevoViewModel);
+                }
+                return RedirectToAction("Index", "Login");
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
 
 
@@ -116,7 +159,11 @@ namespace FrontEnd.Controllers
         }
         public ActionResult Details()
         {
-            int sessionUser = (int)HttpContext.Session.GetInt32("SessionUser");
+            try
+            {
+                if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
+                {
+                    int sessionUser = (int)HttpContext.Session.GetInt32("SessionUser");
 
             ServiceRepository serviceObj = new ServiceRepository();
             HttpResponseMessage response = serviceObj.GetResponse("api/empleado/" + sessionUser.ToString());
@@ -124,6 +171,14 @@ namespace FrontEnd.Controllers
             Models.EmpleadoNuevoViewModel EmpleadoNuevoViewModel = response.Content.ReadAsAsync<Models.EmpleadoNuevoViewModel>().Result;
             //ViewBag.Title = "All Empleados";
             return View(EmpleadoNuevoViewModel);
+                }
+                return RedirectToAction("Index", "Login");
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
 
     }
