@@ -82,7 +82,9 @@
 <br />
 <br />
 <br />
-
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 @*
   @foreach (var item in Model)
         {

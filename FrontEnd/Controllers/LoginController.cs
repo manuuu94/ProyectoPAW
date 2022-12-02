@@ -12,6 +12,7 @@ namespace FrontEnd.Controllers
         // GET: LoginController
         public ActionResult Index()
         {
+            HttpContext.Session.Clear();
             return View();
         }
 

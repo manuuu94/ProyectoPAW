@@ -1,4 +1,6 @@
-﻿namespace FrontEnd.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FrontEnd.Models
 {
     public class InventarioServiciosViewModel
     {
@@ -12,7 +14,9 @@
         public ServicioViewModel Servicio { get; set; }
 
        
+        [Required]
         public int? Id { get; set; }
+        [Required]
         public int? Cantidad { get; set; }
 
 
