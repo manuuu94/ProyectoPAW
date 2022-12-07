@@ -117,7 +117,7 @@
 ---layout sessions para roles - DONE
 
 4-inventario (que muestre en vez de IDservicio el nombre) - DONE
----(ver inventario) opcion añadir carrito 
+---(ver inventario) opcion añadir carrito, en vex textbox para id del producto que sea un dropdown para elegirlo.
 ---(Crear Producto) muestre el dropdown con el tipo de servicio, poner imagen a la derecha o centrarlo
 ---(registro inventario) muestre en vez de IDservicio el nombre
 ---(registro inventario) - reportes PDF,csv, barra de busqueda(esto tmbn en todas las tablas)
@@ -126,8 +126,8 @@
 ---(Ver Carrito) arreglar la vista, eliminar individual 
 ---(Confirmar Compra) - Hacer Vista , metodos de pago tipo dropdown, en ID empleado poner lista de nombres de empleados que lo atendio
 ---(Registro Compras) - Hacer Vista
----(Ver Carrito) - confirmar compra (que no pase si esta vacio) y funcion vaciar carrito(que no pase si esta vacio) y - Pendiente
----(Confirmar Compra)  validaciones - Pendiente
+---(Ver Carrito) - confirmar compra (que no pase si esta vacio) 
+---(Confirmar Compra)  validaciones - Pendiente (Meter cedula y consultar en TSE) Pendiente
 
 6-Clientes atendidos - Luis  
 ---Revisar la hora que sale en la fecha , * se debe cambiar el tipo de dato en la BD de DATE a DATETIME * 
@@ -135,14 +135,41 @@
 7-Empleados - Luis
 ---(Editar) ---crear vista CASI LISTO
 ---(eliminar) --- Crear vista DONE
+---(añadir) agregar un dropdown con el id del rol (muestre al nombre)
 
 
 8-Configuracion  - Manuel
 ---(Ver Perfil) --- DONE
 ---(Cambiar Contraseña) --- DONE
 
+9- Imagenes en ver detalles y editar del inventario (hay que crear el editar y el detalles)
+
+10- Agregar vista parcial a ver perfil para que cargue informacion del rol.
 
 General
 ---limitar sesiones usuario (session timeout) - Carlos
 ---Cambiar las cosas de ingles a español y errores ortograficos - TODOS
----API KEY --- LUIS  DONE *@
+---API KEY --- LUIS  DONE 
+
+
+
+=====================================================================================================================
+
+Pendientes:
+
+--- Opcion añadir carrito en inventario, en vez textbox para id del producto que sea un dropdown para elegirlo.
+--- Añadir producto que muestre el dropdown con el tipo de servicio
+--- Revisar la hora que sale en la fecha , * se debe cambiar el tipo de dato en la BD de DATE a DATETIME *
+--- Añadir empleado, agregar un dropdown con el id del rol (muestre al nombre) en vez de poner un numero.
+--- En las vistas de editar y eliminar empleado que muestre el nombre del rol en vez del numero.
+--- Agregar Imagenes en detalles y editar del inventario (hay que crear el editar y el detalles porque no existen)
+--- Agregar vista parcial a ver perfil para que cargue informacion del rol.
+--- Cambiar las cosas de ingles a español y errores ortograficos.
+--- Revisar bien ortografia y nombres de las columnas de las tablas.
+
+Opcional:
+---(Confirmar Compra) (Meter cedula y consultar en TSE y auto rellenar campos)
+
+=====================================================================================================================
+
+*@
