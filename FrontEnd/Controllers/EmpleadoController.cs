@@ -7,7 +7,24 @@ namespace FrontEnd.Controllers
 {
     public class EmpleadoController : Controller
     {
-            public IActionResult Index()
+
+        private List<RoleViewModel> GetRoles()
+        {
+            RoleHelper RoleHelper = new RoleHelper();
+            List<RoleViewModel> roles = RoleHelper.GetAll();
+
+            return roles;
+
+        }
+
+        private RoleViewModel GetRole(int id)
+        {
+            RoleHelper RoleHelper = new RoleHelper();
+            RoleViewModel role = RoleHelper.GetRole(id);
+
+            return role;
+        }
+        public IActionResult Index()
             {
                 try
                 {
@@ -19,6 +36,15 @@ namespace FrontEnd.Controllers
                     var content = responseMessage.Content.ReadAsStringAsync().Result;
                     List<EmpleadoViewModel> empleado = JsonConvert.DeserializeObject<List<EmpleadoViewModel>>(content); //lista
 
+                    List<EmpleadoViewModel> resultado = new List<EmpleadoViewModel>();
+
+                    foreach (EmpleadoViewModel item in empleado)
+                    {
+
+                        item.role = this.GetRole(item.IdRol);
+                        resultado.Add(item);
+                    }
+                    
                     return View(empleado);
                 }
                 return RedirectToAction("Index", "Login");
@@ -74,7 +100,7 @@ namespace FrontEnd.Controllers
 
                     throw;
                 }
-            }
+    }
 
             public ActionResult Edit(int id)
         {
@@ -86,8 +112,9 @@ namespace FrontEnd.Controllers
                 HttpResponseMessage response = serviceObj.GetResponse("api/Empleado/" + id.ToString());
                 response.EnsureSuccessStatusCode();
                 EmpleadoViewModel EmpleadoViewModel = response.Content.ReadAsAsync<EmpleadoViewModel>().Result;
+                    
 
-                return View(EmpleadoViewModel);
+                    return View(EmpleadoViewModel);
                 }
                 return RedirectToAction("Index", "Login");
             }
@@ -108,7 +135,8 @@ namespace FrontEnd.Controllers
                 HttpResponseMessage response = serviceObj.PutResponse("api/Empleado", empleados);
                 response.EnsureSuccessStatusCode();
                 return RedirectToAction("Details", new { id = empleados.IdEmpleado });
-            }
+               
+        }
 
             [HttpGet]
             public ActionResult Delete(int id)
@@ -122,7 +150,11 @@ namespace FrontEnd.Controllers
                     response.EnsureSuccessStatusCode();
                     EmpleadoViewModel EmpleadoViewModel = response.Content.ReadAsAsync<EmpleadoViewModel>().Result;
                     //ViewBag.Title = "All Empleados";
+
+                    EmpleadoViewModel.role = this.GetRole(EmpleadoViewModel.IdRol);
                     return View(EmpleadoViewModel);
+
+                   
                 }
                     return RedirectToAction("Index", "Login");
                 }
@@ -167,6 +199,7 @@ namespace FrontEnd.Controllers
                     response.EnsureSuccessStatusCode();
                     Models.EmpleadoViewModel EmpleadoViewModel = response.Content.ReadAsAsync<Models.EmpleadoViewModel>().Result;
                     //ViewBag.Title = "All Empleados";
+                    EmpleadoViewModel.role = this.GetRole(EmpleadoViewModel.IdRol);
                     return View(EmpleadoViewModel);
                 }
                 return RedirectToAction("Index", "Login");

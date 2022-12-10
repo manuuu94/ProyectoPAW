@@ -15,4 +15,9 @@ public class EmpleadoViewModel
     public DateTime FechaIngreso { get; set; }
     public string Correo { get; set; } = null!;
     public int IdRol { get; set; }
+
+    public RoleViewModel role { get; set; }
+    //public string Nombre { get; set; }
+
+    public List<RoleViewModel> roles { get; set; }
 }

@@ -13,7 +13,8 @@ namespace FrontEnd.Models
 
         public ServicioViewModel Servicio { get; set; }
 
-       
+        public List<ServicioViewModel> Servicios { get; set; }
+
         [Required]
         public int? Id { get; set; }
         [Required]

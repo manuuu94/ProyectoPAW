@@ -49,8 +49,8 @@
                 <span asp-validation-for="Correo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdRol" class="control-label"></label>
-                <input asp-for="IdRol" class="form-control" readonly />
+                <label asp-for="Role" class="control-label"></label>
+                @Html.DropDownListFor(model => model.IdRol, new SelectList(Model.Roles, "IdRol", "Descripcion"), "--Seleccione--")
                 <span asp-validation-for="IdRol" class="text-danger"></span>
             </div>
             <div class="form-group">

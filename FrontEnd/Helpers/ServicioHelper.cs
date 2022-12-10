@@ -18,5 +18,16 @@ namespace FrontEnd.Helpers
             return servicios;
 
         }
+
+        public ServicioViewModel GetServicio(int id)
+        {
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.GetResponse("api/Servicio/" + id.ToString());
+            response.EnsureSuccessStatusCode();
+            ServicioViewModel ServicioViewModel = response.Content.ReadAsAsync<ServicioViewModel>().Result;
+
+            return ServicioViewModel;
+
+        }
     }
 }

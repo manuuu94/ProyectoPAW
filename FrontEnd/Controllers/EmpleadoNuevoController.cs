@@ -8,6 +8,16 @@ namespace FrontEnd.Controllers
     public class EmpleadoNuevoController : Controller
     {
 
+        private List<RoleViewModel> GetRole()
+        {
+            RoleHelper RoleHelper = new RoleHelper();
+            List<RoleViewModel> role = RoleHelper.GetAll();
+
+
+            return role;
+
+
+        }
 
         public IActionResult Index()
         {
@@ -37,17 +47,25 @@ namespace FrontEnd.Controllers
             {
                 if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
                 {
-                    return View();
-                }
-                return RedirectToAction("Index", "Login");
 
+                    EmpleadoNuevoViewModel EmpleadoNuevoViewModel = new EmpleadoNuevoViewModel();
+
+                    //registroCompraViewModel.TotalCompra = total;
+                    EmpleadoNuevoViewModel.Roles = this.GetRole();
+
+                    return View(EmpleadoNuevoViewModel);
+
+                }
+
+                return View();
             }
+
             catch (Exception)
             {
                 return RedirectToAction("Index", "Login");
+
             }
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -88,8 +106,9 @@ namespace FrontEnd.Controllers
             HttpResponseMessage response = serviceObj.GetResponse("api/Empleado/" + id.ToString());
             response.EnsureSuccessStatusCode();
             EmpleadoNuevoViewModel EmpleadoNuevoViewModel = response.Content.ReadAsAsync<EmpleadoNuevoViewModel>().Result;
+                    EmpleadoNuevoViewModel.Roles = this.GetRole();
 
-            return View(EmpleadoNuevoViewModel);
+                    return View(EmpleadoNuevoViewModel);
             
             }
             return RedirectToAction("Index", "Login");

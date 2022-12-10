@@ -18,6 +18,16 @@ namespace FrontEnd.Controllers
 
 
         }
+        /*
+        private ServicioViewModel GetServicio(int id)
+        {
+            ServicioHelper ServicioHelper = new ServicioHelper();
+            ServicioViewModel servicio = ServicioHelper.GetServicio(id);
+
+            return servicio;
+        }
+
+       */
 
         private ServicioViewModel GetServicio(int id)
         {

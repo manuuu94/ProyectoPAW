@@ -8,6 +8,8 @@ namespace FrontEnd.Controllers
     public class InventarioServiciosController : Controller
     {
 
+
+      
         private List<ServicioViewModel> GetServicio()
         {
             ServicioHelper ServicioHelper = new ServicioHelper();
@@ -82,11 +84,15 @@ namespace FrontEnd.Controllers
 
                     List<InventarioServiciosViewModel> resultado = new List<InventarioServiciosViewModel>();
 
+                    InventarioServiciosViewModel prueba = new InventarioServiciosViewModel();     
                     foreach (InventarioServiciosViewModel item in inventario)
                     {
 
                         item.Servicio = this.GetServicio(item.IdServicio);
+                       
                         resultado.Add(item);
+
+                        prueba.Servicios = this.GetServicio();
                     }
 
 
@@ -107,20 +113,29 @@ namespace FrontEnd.Controllers
             {
                 if ((int)HttpContext.Session.GetInt32("SessionUser") != null)
                 {
-                    return View();
-                }
-                return RedirectToAction("Index", "Login");
 
+                    InventarioServiciosViewModel InventarioServiciosViewModel = new InventarioServiciosViewModel();
+
+                    //registroCompraViewModel.TotalCompra = total;
+                    InventarioServiciosViewModel.Servicios = this.GetServicio();
+
+                    return View(InventarioServiciosViewModel);
+                
             }
+
+                return View();
+            }
+
             catch (Exception)
             {
                 return RedirectToAction("Index", "Login");
+
             }
         }
 
 
 
-        [HttpPost]
+            [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(InventarioServiciosViewModel inventario)
         {

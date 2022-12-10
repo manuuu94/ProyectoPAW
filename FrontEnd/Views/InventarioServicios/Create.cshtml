@@ -40,8 +40,8 @@
                 <span asp-validation-for="UrlImage" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdServicio" class="control-label"></label>
-                <input asp-for="IdServicio" class="form-control" />
+                <label asp-for="Servicio" class="control-label"></label>
+                @Html.DropDownListFor(model => model.IdServicio, new SelectList(Model.Servicios, "IdServicio", "NombreServicio"), "--Seleccione--")
                 <span asp-validation-for="IdServicio" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -10,5 +10,10 @@
         public string Password { get; set; } = null!;
         public string Correo { get; set; } = null!;
         public int IdRol { get; set; }
+
+        public RoleViewModel Role { get; set; }
+
+        public List<RoleViewModel> Roles { get; set; }
+
     }
 }

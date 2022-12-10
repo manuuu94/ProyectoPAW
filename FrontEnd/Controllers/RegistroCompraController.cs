@@ -97,6 +97,7 @@ namespace FrontEnd.Controllers
                     registroCompraViewModel.Empleados = this.GetEmpleados();
                     registroCompraViewModel.MetodosPago = this.GetMetodos();
 
+
                     return View(registroCompraViewModel);
                 }
                 return RedirectToAction("Index", "Login");
