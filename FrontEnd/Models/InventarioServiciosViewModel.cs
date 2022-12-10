@@ -11,9 +11,11 @@ namespace FrontEnd.Models
         public string? UrlImage { get; set; }
         public int IdServicio { get; set; }
 
-        public ServicioViewModel Servicio { get; set; }
+        public List<InventarioServiciosViewModel> Productos { get; set; }
 
-        public List<ServicioViewModel> Servicios { get; set; }
+        public ServicioViewModel? Servicio { get; set; }
+
+        public List<ServicioViewModel>? Servicios { get; set; }
 
         [Required]
         public int? Id { get; set; }

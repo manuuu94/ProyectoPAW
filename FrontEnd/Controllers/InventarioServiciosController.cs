@@ -18,6 +18,25 @@ namespace FrontEnd.Controllers
 
             return servicio;
 
+        }
+
+        private ServicioViewModel GetServicioId(int id)
+        {
+            ServicioHelper ServicioHelper = new ServicioHelper();
+            ServicioViewModel servicio = ServicioHelper.GetServicio(id);
+
+
+            return servicio;
+
+        }
+
+        private List<InventarioServiciosViewModel> GetInventarioServicios()
+        {
+            InventarioServiciosHelper inventarioServicios = new InventarioServiciosHelper();
+            List<InventarioServiciosViewModel> inventario = inventarioServicios.GetInventarioServicios();
+
+
+            return inventario;
 
         }
 
@@ -84,19 +103,16 @@ namespace FrontEnd.Controllers
 
                     List<InventarioServiciosViewModel> resultado = new List<InventarioServiciosViewModel>();
 
-                    InventarioServiciosViewModel prueba = new InventarioServiciosViewModel();     
                     foreach (InventarioServiciosViewModel item in inventario)
                     {
 
                         item.Servicio = this.GetServicio(item.IdServicio);
-                       
+                        item.Productos = this.GetInventarioServicios();
                         resultado.Add(item);
-
-                        prueba.Servicios = this.GetServicio();
                     }
 
 
-                    return View(inventario);
+                    return View(resultado);
                 }
                 return RedirectToAction("Index", "Login");
 
@@ -172,7 +188,8 @@ namespace FrontEnd.Controllers
                     HttpResponseMessage response = serviceObj.GetResponse("api/InventarioServicios/" + id.ToString());
                     response.EnsureSuccessStatusCode();
                     InventarioServiciosViewModel InventarioServiciosViewModel = response.Content.ReadAsAsync<InventarioServiciosViewModel>().Result;
-
+                    InventarioServiciosViewModel.Servicio = this.GetServicioId(InventarioServiciosViewModel.IdServicio);
+                    InventarioServiciosViewModel.Servicios = this.GetServicio();
                     return View(InventarioServiciosViewModel);
                 }
                 return RedirectToAction("Index", "Login");
@@ -249,6 +266,7 @@ namespace FrontEnd.Controllers
                     response.EnsureSuccessStatusCode();
                     Models.InventarioServiciosViewModel InventarioServiciosViewModel = response.Content.ReadAsAsync<Models.InventarioServiciosViewModel>().Result;
                     //ViewBag.Title = "All Products";
+                    InventarioServiciosViewModel.Servicio = this.GetServicioId(InventarioServiciosViewModel.IdServicio);
                     return View(InventarioServiciosViewModel);
                 }
                 return RedirectToAction("Index", "Login");

@@ -44,18 +44,18 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.UrlImage)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UrlImage)
+        <dd>
+            <img src= model.UrlImage/>
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IdServicio)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdServicio)
+            @Html.DisplayFor(model => model.Servicio.NombreServicio)
         </dd>
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdProducto }) |
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdProducto }) |
     <a asp-action="Index">Regresar</a>
 </div>
